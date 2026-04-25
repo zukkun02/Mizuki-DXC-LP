@@ -118,7 +118,7 @@
 
     /* FAQ accordion */
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-item.open .faq-answer { max-height: 600px; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
     .faq-icon { transition: transform 0.3s ease; }
 
@@ -197,14 +197,21 @@
           <!-- CTA -->
           <div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
             <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-cta-green hover:bg-cta-green-hover text-white font-bold text-base sm:text-lg px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl w-full sm:w-auto text-center">
-              まず無料で相談してみる
+              無料ヒアリングを予約
             </a>
             <a href="https://lin.ee/rMwOfnn" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#06C755] hover:bg-[#05b04c] text-white font-bold text-sm px-5 py-3 rounded-full transition-colors cursor-pointer shadow-lg">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
               LINE で情報を受け取る
             </a>
           </div>
-          <p class="text-white/50 text-xs">たった3分で入力完了 / 無理な営業は一切しません</p>
+          <p class="text-white/50 text-xs mb-3">たった3分で入力完了 / 無理な営業は一切しません</p>
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/70 text-xs">
+            <span class="inline-flex items-center gap-1"><span class="text-accent font-bold">★4.9</span>ココナラ評価</span>
+            <span class="text-white/20">|</span>
+            <span class="inline-flex items-center gap-1"><span class="text-accent font-bold">30件+</span>支援実績</span>
+            <span class="text-white/20">|</span>
+            <span class="inline-flex items-center gap-1"><span class="text-accent font-bold">99%</span>満足度</span>
+          </div>
         </div>
       </div>
     </div>
@@ -559,7 +566,7 @@
       <!-- Mid CTA -->
       <div class="text-center mt-14 fade-in">
         <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-cta-green hover:bg-cta-green-hover text-white font-bold text-base px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl cta-pulse">
-          御社の業務フローを一緒に整理しませんか？
+          業務を一緒に整理する
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
         <p class="text-text-muted text-xs mt-3">無理な営業は一切しません</p>
@@ -887,7 +894,21 @@
             <span class="text-text-muted text-xs ml-2">（税別・目安）</span>
           </div>
         </div>
-        <p class="text-text-muted text-xs mb-6">※ あくまで目安です。ご依頼の内容により変動します。</p>
+        <p class="text-text-muted text-xs mb-4">※ あくまで目安です。ご依頼の内容により変動します。</p>
+        <div class="bg-white rounded-xl border border-border-light p-4 mb-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="text-center sm:text-left">
+            <span class="font-bold text-primary block mb-1">個人〜5名規模</span>
+            <span class="text-text-secondary">3〜10万円目安</span>
+          </div>
+          <div class="text-center sm:text-left sm:border-l sm:border-border-light sm:pl-3">
+            <span class="font-bold text-primary block mb-1">10〜30名規模</span>
+            <span class="text-text-secondary">10〜20万円目安</span>
+          </div>
+          <div class="text-center sm:text-left sm:border-l sm:border-border-light sm:pl-3">
+            <span class="font-bold text-primary block mb-1">業務統合・複雑系</span>
+            <span class="text-text-secondary">20〜30万円目安</span>
+          </div>
+        </div>
         <div class="flex flex-wrap gap-2">
           <span class="inline-flex items-center gap-1.5 bg-white text-text-secondary text-xs font-medium px-3 py-1.5 rounded-full border border-border-light">
             <svg class="w-3.5 h-3.5 text-cta-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
@@ -1069,7 +1090,7 @@
       <h2 class="font-heading font-bold text-2xl sm:text-3xl text-white mb-4">丁寧に伴走するため、<br class="sm:hidden">毎月の受付は<span class="text-accent">3社まで</span>に限定しています。</h2>
       <p class="text-white/60 text-base mb-8">一社一社に十分な時間をかけて支援するため、対応枠には限りがあります。</p>
       <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse inline-flex items-center gap-2 bg-cta-green hover:bg-cta-green-hover text-white font-bold text-base px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl">
-        無料ヒアリングを予約する
+        無料ヒアリングを予約
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
       </a>
     </div>
@@ -1084,7 +1105,7 @@
 
       <div class="flex flex-col items-center gap-4">
         <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-cta-green hover:bg-cta-green-hover text-white font-bold text-lg px-10 py-5 rounded-full transition-colors cursor-pointer shadow-xl inline-flex items-center gap-2">
-          無料ヒアリングを予約する
+          無料ヒアリングを予約
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
         <p class="text-text-muted text-xs mb-4">たった3分で予約完了 / 無理な営業は一切しません</p>
