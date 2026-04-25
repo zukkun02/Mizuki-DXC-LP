@@ -1,0 +1,60 @@
+{
+  "_comment": "lp-syncが Notion から自動生成する中間ファイル。手動編集禁止。",
+  "_lastSyncedAt": null,
+  "_sourceHash": null,
+  "metrics": [
+    {
+      "key": "coconala_rating",
+      "label": "ココナラ平均評価",
+      "value": "4.9",
+      "unit": "",
+      "icon": "star",
+      "tickerLabel": "ココナラ平均評価 4.9",
+      "order": 1
+    },
+    {
+      "key": "total_sales",
+      "label": "累計販売実績",
+      "value": "30",
+      "unit": "件+",
+      "icon": "chart",
+      "tickerLabel": "累計販売実績 30件超",
+      "order": 2
+    },
+    {
+      "key": "satisfaction",
+      "label": "お客様満足度",
+      "value": "99",
+      "unit": "%",
+      "icon": "smile",
+      "tickerLabel": "お客様満足度 99%",
+      "order": 3
+    }
+  ],
+  "voices": [
+    {
+      "name": "A様",
+      "attribute": "女性",
+      "rating": 5,
+      "body": "お客様カルテの作成を作って頂き、繊細な内容にも対応して頂き本当にありがとうございました。また是非機会がありましたらお願い申し上げます。",
+      "tickerShort": "繊細な内容にも対応して頂き本当にありがとうございました",
+      "order": 1
+    },
+    {
+      "name": "B様",
+      "attribute": "男性",
+      "rating": 5,
+      "body": "ビデオチャットで丁寧に教えていただきとても参考になりました。こちらの要望に応えていただき感謝しています。また不明点などでてきたときには是非お願いしたいと思いました。",
+      "tickerShort": "丁寧に教えていただきとても参考になりました",
+      "order": 2
+    },
+    {
+      "name": "C様",
+      "attribute": "男性",
+      "rating": 5,
+      "body": "とても分かりやすく、最適な提案をしてくださったので、疑問や課題が解決しました。みずきさんにお願いしてよかったです！またつまずくことがありましたら、ぜひご相談させてください。",
+      "tickerShort": "とても分かりやすく、最適な提案をしてくださった",
+      "order": 3
+    }
+  ]
+}
