@@ -1,1 +1,5 @@
 .DS_Store
+.claude/
+.vscode/
+_design_fetch/
+メモ.md

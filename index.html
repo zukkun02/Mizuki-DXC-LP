@@ -3,36 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notion中心のDX化コンサルティング｜業務フローごとデジタル化、定着まで伴走</title>
-  <meta name="description" content="Notionを中心に業務フローごとデジタル化。構築だけでなく定着・運用まで一気通貫で支援。まずは無料ヒアリングからお気軽にご相談ください。">
-  <meta property="og:title" content="Notion中心のDX化コンサルティング">
-  <meta property="og:description" content="業務フローごとデジタル化。定着まで伴走します。">
-  <meta property="og:type" content="website">
+  <title>Notion × AI 業務改善コンサル｜雑務に奪われた時間を取り戻す</title>
+  <meta name="description" content="1〜30人規模の事業者のための、Notion 構築 × AI 自動化 × AI エージェント 一貫設計。雑務時間を半減させ、本業に集中できる仕組みを設計します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#0F172A',
-            secondary: '#334155',
-            accent: '#CA8A04',
-            'accent-hover': '#A16207',
-            surface: '#F8FAFC',
-            'surface-alt': '#F1F5F9',
-            'text-primary': '#020617',
-            'text-secondary': '#475569',
-            'text-muted': '#64748B',
-            'border-light': '#E2E8F0',
+            ink: '#0A0A0A',
+            'ink-soft': '#171717',
+            'ink-mid': '#404040',
+            'ink-mute': '#737373',
+            'ink-faint': '#A3A3A3',
+            paper: '#FFFFFF',
+            'paper-soft': '#FAFAFA',
+            'paper-alt': '#F5F5F5',
+            line: '#E5E5E5',
+            'line-soft': '#EFEFEF',
             'cta-green': '#16A34A',
             'cta-green-hover': '#15803D',
           },
           fontFamily: {
-            heading: ['Poppins', 'Noto Sans JP', 'sans-serif'],
+            heading: ['Inter', 'Noto Sans JP', 'sans-serif'],
             body: ['Noto Sans JP', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
           },
         }
       }
@@ -41,1113 +39,1075 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Noto Sans JP', sans-serif; color: #020617; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: #0A0A0A; background: #fff; }
 
-    /* Floating Navbar */
     .navbar {
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(226, 232, 240, 0.6);
+      border: 1px solid rgba(229, 229, 229, 0.8);
     }
 
-    /* Hero gradient */
-    .hero-gradient {
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+    .grid-bg-dark {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
     }
 
-    /* Gold accent gradient */
-    .gold-gradient {
-      background: linear-gradient(135deg, #CA8A04 0%, #EAB308 50%, #CA8A04 100%);
-    }
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* Section fade-in */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .card-hover { transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease; }
+    .card-hover:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.08); transform: translateY(-3px); border-color: #0A0A0A; }
 
-    /* Step connector line */
-    .step-line::after {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 100%;
-      width: 2px;
-      height: 40px;
-      background: linear-gradient(to bottom, #CA8A04, transparent);
-      transform: translateX(-50%);
-    }
-    .step-line:last-child::after { display: none; }
-
-    /* Card hover */
-    .card-hover {
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-    }
-    .card-hover:hover {
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
-      transform: translateY(-4px);
-    }
-
-    /* CTA pulse */
-    .cta-pulse {
-      animation: pulse-ring 2s ease-out infinite;
-    }
+    .cta-pulse { animation: pulse-ring 2s ease-out infinite; }
     @keyframes pulse-ring {
-      0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
-      70% { box-shadow: 0 0 0 12px rgba(22, 163, 74, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(10,10,10,.35); }
+      70% { box-shadow: 0 0 0 12px rgba(10,10,10,0); }
+      100% { box-shadow: 0 0 0 0 rgba(10,10,10,0); }
     }
 
-    /* Ticker */
-    .ticker-track {
-      display: flex;
-      animation: ticker-scroll 25s linear infinite;
-      width: max-content;
-    }
+    .ticker-track { display: flex; animation: ticker-scroll 35s linear infinite; width: max-content; }
     .ticker-track:hover { animation-play-state: paused; }
-    @keyframes ticker-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes ticker-scroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
 
-    /* FAQ accordion */
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .faq-item.open .faq-answer { max-height: 400px; }
     .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-icon { transition: transform 0.3s ease; }
+    .faq-icon { transition: transform .3s ease; }
 
-    /* Hero person image */
-    .hero-person {
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+    /* ===== 4-LAYER LOOP DIAGRAM ===== */
+    /* Stage has built-in margin so layer-pills positioned at 12%/88% sit on the outer ring */
+    .loop-stage {
+      position: relative; width: 100%; aspect-ratio: 1 / 1;
+      max-width: 480px; margin: 16px auto;
+      box-sizing: border-box;
     }
 
-    /* Reduced motion */
+    /* concentric rings — pulse outward to suggest constant motion */
+    .ring {
+      position: absolute; border-radius: 50%; border: 1px solid #E5E5E5;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+    }
+    .ring.r1 { width: 76%; height: 76%; } /* outer ring sits at 76% of padded box = visually centered */
+    .ring.r2 { width: 58%; height: 58%; }
+    .ring.r3 { width: 40%; height: 40%; }
+    .ring.r4 { width: 22%; height: 22%; }
+    .ring.dashed { border-style: dashed; border-color: #D4D4D4; }
+
+    /* rotating arrow ring — visualizes the cycle */
+    .orbit {
+      position: absolute; top: 50%; left: 50%;
+      border-radius: 50%; border: 1.5px solid transparent;
+      transform: translate(-50%, -50%);
+      animation: orbit-spin 14s linear infinite;
+    }
+    .orbit.outer { width: 76%; height: 76%; }
+    .orbit.mid { width: 58%; height: 58%; animation-duration: 11s; animation-direction: reverse; }
+    .orbit.inner { width: 40%; height: 40%; animation-duration: 8s; }
+    @keyframes orbit-spin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+    .orbit::before {
+      content: ''; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px;
+      border-radius: 50%; background: #0A0A0A; transform: translateX(-50%);
+      box-shadow: 0 0 0 4px rgba(10,10,10,0.08);
+    }
+    .orbit.mid::before { width: 8px; height: 8px; top: -4px; }
+    .orbit.inner::before { width: 6px; height: 6px; top: -3px; background: #404040; }
+
+    /* layer labels positioned on rings */
+    .layer-pill {
+      position: absolute;
+      background: #fff; border: 1px solid #0A0A0A; border-radius: 999px;
+      padding: 8px 14px;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transform: translate(-50%, -50%);
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: default;
+      white-space: nowrap;
+    }
+    .layer-pill:hover { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 12px 28px rgba(0,0,0,0.18); z-index: 5; }
+    .layer-pill .num { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #737373; letter-spacing: .1em; display: block; line-height: 1; margin-bottom: 2px; }
+    .layer-pill .name { font-size: 12px; font-weight: 700; color: #0A0A0A; line-height: 1.2; }
+    @media (min-width: 640px) {
+      .layer-pill { padding: 10px 18px; }
+      .layer-pill .num { font-size: 10px; }
+      .layer-pill .name { font-size: 13px; }
+    }
+
+    /* center node — Notion */
+    .loop-core {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 17%; aspect-ratio: 1/1;
+      background: #0A0A0A; color: #fff; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 8px;
+      box-shadow: 0 0 0 8px #fff, 0 0 0 9px #0A0A0A;
+    }
+    .loop-core .core-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .15em; opacity: .6; }
+    .loop-core .core-name { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 14px; line-height: 1.1; margin-top: 2px; }
+    @media (min-width: 640px) { .loop-core .core-name { font-size: 18px; } .loop-core .core-label { font-size: 10px; } }
+
+    /* flow chips on rings — flow steps */
+    .flow-step {
+      position: absolute; transform: translate(-50%,-50%);
+      font-family: 'JetBrains Mono', monospace; font-size: 10px;
+      color: #0A0A0A; background: #fff; border: 1px solid #E5E5E5;
+      padding: 4px 10px; border-radius: 999px; white-space: nowrap;
+    }
+
+    /* Pulse traveling along the loop */
+    @keyframes ringPulse {
+      0%, 100% { opacity: .15; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: .35; transform: translate(-50%,-50%) scale(1.02); }
+    }
+    .ring.pulse { animation: ringPulse 4s ease-in-out infinite; }
+    .ring.pulse.r2 { animation-delay: .5s; }
+    .ring.pulse.r3 { animation-delay: 1s; }
+    .ring.pulse.r4 { animation-delay: 1.5s; }
+
+    /* tiny floating data ticks moving along the loop (decorative) */
+    .data-tick {
+      position: absolute; width: 4px; height: 4px; border-radius: 50%;
+      background: #0A0A0A;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .tick-orbit-1 {
+      position: absolute; top: 50%; left: 50%;
+      width: 67%; height: 67%; transform: translate(-50%,-50%);
+      animation: orbit-spin 18s linear infinite;
+      pointer-events: none;
+    }
+    .tick-orbit-1::before {
+      content: ''; position: absolute; top: -2px; left: 50%; width: 6px; height: 6px;
+      background: #404040; border-radius: 50%; transform: translateX(-50%);
+    }
+    .tick-orbit-2 {
+      position: absolute; top: 50%; left: 50%;
+      width: 49%; height: 49%; transform: translate(-50%,-50%);
+      animation: orbit-spin 13s linear infinite reverse;
+      pointer-events: none;
+    }
+    .tick-orbit-2::before {
+      content: ''; position: absolute; top: -2px; left: 50%; width: 5px; height: 5px;
+      background: #737373; border-radius: 50%; transform: translateX(-50%);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .fade-in { opacity: 1; transform: none; transition: none; }
-      .cta-pulse { animation: none; }
+      .cta-pulse, .orbit, .ring.pulse, .tick-orbit-1, .tick-orbit-2 { animation: none; }
       .card-hover { transition: none; }
       .card-hover:hover { transform: none; }
     }
 
-    /* Number counter */
-    .counter-value {
-      font-variant-numeric: tabular-nums;
+    /* arrow flow visual */
+    .flow-arrow { position: relative; }
+    .flow-arrow::after {
+      content: '↓'; position: absolute; left: 50%; top: 100%; transform: translate(-50%, 4px);
+      color: #A3A3A3; font-size: 18px;
+    }
+
+    /* monochrome accent underline — sits below the glyph baseline so it doesn't visually overlap text */
+    .ink-underline {
+      background: linear-gradient(transparent 86%, #0A0A0A 86%, #0A0A0A 94%, transparent 94%);
+      display: inline; padding: 0 2px;
     }
   </style>
 </head>
-<body class="bg-white">
+<body class="bg-paper text-ink">
 
   <!-- ========== NAVBAR ========== -->
-  <nav class="navbar fixed top-4 left-4 right-4 z-50 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-lg">
+  <nav class="navbar fixed top-4 left-4 right-4 z-50 rounded-2xl px-4 sm:px-6 lg:px-8 py-3 shadow-sm">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2 font-heading font-bold text-lg text-primary">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="28" height="28" rx="6" fill="#0F172A"/>
-          <path d="M7 8h14v2H7V8zm0 5h10v2H7v-2zm0 5h14v2H7v-2z" fill="#CA8A04"/>
+      <a href="#" class="flex items-center gap-2.5 font-heading font-bold text-base text-ink">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+          <path d="M7 7h3v14H7V7zm4 0h3l4 7V7h3v14h-3l-4-7v7h-3V7z" fill="#FFFFFF"/>
         </svg>
-        DX Partners
+        <span class="leading-tight">
+          <span class="block text-[11px] font-medium text-ink-mute -mb-0.5 tracking-wide">DX Partners</span>
+          <span class="block text-[15px]">Notion × AI 業務改善</span>
+        </span>
       </a>
-      <div class="hidden md:flex items-center gap-6 text-sm text-text-secondary font-medium">
-        <a href="#problems" class="hover:text-primary transition-colors cursor-pointer">課題</a>
-        <a href="#services" class="hover:text-primary transition-colors cursor-pointer">サービス</a>
-        <a href="#cases" class="hover:text-primary transition-colors cursor-pointer">導入事例</a>
-        <a href="#flow" class="hover:text-primary transition-colors cursor-pointer">支援フロー</a>
-        <a href="#faq" class="hover:text-primary transition-colors cursor-pointer">FAQ</a>
+      <div class="hidden md:flex items-center gap-6 text-sm text-ink-mid font-medium">
+        <a href="#problems" class="hover:text-ink transition-colors cursor-pointer">課題</a>
+        <a href="#architecture" class="hover:text-ink transition-colors cursor-pointer">4層アーキ</a>
+        <a href="#pricing" class="hover:text-ink transition-colors cursor-pointer">料金</a>
+        <a href="#cases" class="hover:text-ink transition-colors cursor-pointer">事例</a>
+        <a href="#faq" class="hover:text-ink transition-colors cursor-pointer">FAQ</a>
       </div>
-      <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="bg-cta-green hover:bg-cta-green-hover text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors cursor-pointer shadow-md">
+      <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="bg-ink hover:bg-ink-soft text-white text-sm font-bold px-5 py-2.5 rounded-full transition-colors cursor-pointer shadow-sm">
         無料で相談する
       </a>
     </div>
   </nav>
 
-  <!-- ========== HERO (FV) ========== -->
-  <section class="hero-gradient relative overflow-hidden min-h-screen flex items-center pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-    <!-- Background pattern image -->
-    <div class="absolute inset-0 opacity-30">
-      <img src="img/generated/hero-pattern.png" alt="" class="w-full h-full object-cover" loading="eager" aria-hidden="true">
+  <!-- ========== HERO ========== -->
+  <section class="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 px-4 sm:px-6 lg:px-8 bg-paper">
+    <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(0,0,0,0.04), transparent 70%)"></div>
+      <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(0,0,0,0.03), transparent 70%)"></div>
     </div>
-    <!-- Accent glow -->
-    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl"></div>
 
-    <div class="max-w-6xl mx-auto w-full relative z-10">
-      <div class="max-w-2xl mx-auto lg:mx-0">
-        <!-- Copy -->
-        <div class="text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
-            <span class="w-2 h-2 bg-cta-green rounded-full animate-pulse"></span>
-            <span class="text-white/80 text-xs font-medium">月3社限定で無料ヒアリング受付中</span>
-          </div>
+    <div class="max-w-3xl mx-auto w-full relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 bg-paper-soft border border-line rounded-full px-4 py-1.5 mb-5">
+        <span class="w-2 h-2 bg-cta-green rounded-full animate-pulse"></span>
+        <span class="text-ink-mid text-xs font-medium tracking-wide">月3社限定で無料ヒアリング受付中</span>
+      </div>
 
-          <h1 class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] text-white leading-tight mb-6">
-            ツールを変えても、<br><span class="text-accent">業務は変わらない。</span>
-          </h1>
+      <h1 class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] text-ink leading-[1.18] mb-5 text-balance tracking-tight">
+        <span class="block">Notion × AI で、</span>
+        <span class="block">雑務に奪われた時間を、</span>
+        <span class="block"><span class="ink-underline">取り戻す。</span></span>
+      </h1>
 
-          <p class="text-white/70 text-lg sm:text-xl leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-            徹底したヒアリングで<br>
-            <strong class="text-white border-b-2 border-accent pb-0.5">仕組みを整える。</strong>
-          </p>
+      <p class="text-ink-mid text-base sm:text-lg leading-relaxed mb-7 max-w-xl mx-auto">
+        1〜30人規模の事業者向け、<strong class="text-ink">Notion × AI</strong> の一貫設計。
+      </p>
 
-          <!-- CTA -->
-          <div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
-            <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-cta-green hover:bg-cta-green-hover text-white font-bold text-base sm:text-lg px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl w-full sm:w-auto text-center">
-              まず無料で相談してみる
-            </a>
-            <a href="https://lin.ee/rMwOfnn" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-[#06C755] hover:bg-[#05b04c] text-white font-bold text-sm px-5 py-3 rounded-full transition-colors cursor-pointer shadow-lg">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-              LINE で情報を受け取る
-            </a>
-          </div>
-          <p class="text-white/50 text-xs">たった3分で入力完了 / 無理な営業は一切しません</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
+        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-ink hover:bg-ink-soft text-white font-bold text-base sm:text-lg px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl w-full sm:w-auto text-center">
+          まず無料で相談してみる
+        </a>
+        <div class="flex flex-col items-center gap-1.5">
+          <a href="https://lin.ee/rMwOfnn" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-cta-green hover:bg-cta-green-hover text-white font-bold text-sm px-5 py-2.5 rounded-full transition-colors cursor-pointer shadow-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            AI 自動化診断をする
+          </a>
+          <p class="text-ink-mute text-[11px] leading-tight whitespace-nowrap">LINEで診断シートをお届け（無料・30秒で受取）</p>
         </div>
       </div>
+      <p class="text-ink-mute text-xs mt-2">無理な営業は一切しません</p>
     </div>
   </section>
 
-  <!-- ========== TICKER: Social Proof ========== -->
-  <div class="bg-white border-y border-border-light py-4 overflow-hidden">
+  <!-- ========== TICKER (stats only) ========== -->
+  <div class="bg-paper-soft border-y border-line py-4 overflow-hidden">
     <div class="ticker-track">
-      <div class="flex items-center gap-12 px-6">
-        <span class="flex items-center gap-2 text-sm font-semibold text-primary whitespace-nowrap">
-          <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-          ココナラ平均評価 4.9
+      <div class="flex items-center gap-10 px-6">
+        <span class="flex items-center gap-2 text-sm font-semibold text-ink whitespace-nowrap">
+          <svg class="w-4 h-4 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.306a11.95 11.95 0 015.814-5.518l2.74-1.22m0 0l-5.94-2.281m5.94 2.28l-2.28 5.941"/></svg>
+          中小・個人事業主 30社以上の Notion + AI 設計実績
         </span>
-        <span class="text-border-light">|</span>
-        <span class="flex items-center gap-2 text-sm font-semibold text-primary whitespace-nowrap">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-          累計販売実績 30件超
+        <span class="text-line">/</span>
+        <span class="flex items-center gap-2 text-sm font-semibold text-ink whitespace-nowrap">
+          <svg class="w-4 h-4 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V12L16 14M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"/></svg>
+          雑務時間 平均 月15〜30時間 削減
         </span>
-        <span class="text-border-light">|</span>
-        <span class="flex items-center gap-2 text-sm font-semibold text-primary whitespace-nowrap">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
-          お客様満足度 99%
+        <span class="text-line">/</span>
+        <span class="flex items-center gap-2 text-sm font-semibold text-ink whitespace-nowrap">
+          <svg class="w-4 h-4 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          Notion × AI 4層を分業せず一気通貫で設計できる希少な事業者
         </span>
-        <span class="text-border-light">|</span>
-        <span class="text-sm text-text-secondary whitespace-nowrap italic">"とても分かりやすく、最適な提案をしてくださった"</span>
-        <span class="text-border-light">|</span>
-        <span class="text-sm text-text-secondary whitespace-nowrap italic">"丁寧に教えていただきとても参考になりました"</span>
-        <span class="text-border-light">|</span>
-        <span class="text-sm text-text-secondary whitespace-nowrap italic">"繊細な内容にも対応して頂き本当にありがとうございました"</span>
+        <span class="text-line">/</span>
       </div>
-      <!-- Duplicate for seamless loop -->
-      <div class="flex items-center gap-12 px-6">
-        <span class="flex items-center gap-2 text-sm font-semibold text-primary whitespace-nowrap">
-          <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-          ココナラ平均評価 4.9
+      <div class="flex items-center gap-10 px-6">
+        <span class="flex items-center gap-2 text-sm font-semibold text-ink whitespace-nowrap">
+          <svg class="w-4 h-4 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.306a11.95 11.95 0 015.814-5.518l2.74-1.22m0 0l-5.94-2.281m5.94 2.28l-2.28 5.941"/></svg>
+          中小・個人事業主 30社以上の Notion + AI 設計実績
         </span>
-        <span class="text-border-light">|</span>
-        <span class="flex items-center gap-2 text-sm font-semibold text-primary whitespace-nowrap">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-          累計販売実績 30件超
+        <span class="text-line">/</span>
+        <span class="flex items-center gap-2 text-sm font-semibold text-ink whitespace-nowrap">
+          <svg class="w-4 h-4 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V12L16 14M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"/></svg>
+          雑務時間 平均 月15〜30時間 削減
         </span>
-        <span class="text-border-light">|</span>
-        <span class="flex items-center gap-2 text-sm font-semibold text-primary whitespace-nowrap">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
-          お客様満足度 99%
+        <span class="text-line">/</span>
+        <span class="flex items-center gap-2 text-sm font-semibold text-ink whitespace-nowrap">
+          <svg class="w-4 h-4 text-ink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+          Notion × AI 4層を分業せず一気通貫で設計できる希少な事業者
         </span>
-        <span class="text-border-light">|</span>
-        <span class="text-sm text-text-secondary whitespace-nowrap italic">"とても分かりやすく、最適な提案をしてくださった"</span>
-        <span class="text-border-light">|</span>
-        <span class="text-sm text-text-secondary whitespace-nowrap italic">"丁寧に教えていただきとても参考になりました"</span>
-        <span class="text-border-light">|</span>
-        <span class="text-sm text-text-secondary whitespace-nowrap italic">"繊細な内容にも対応して頂き本当にありがとうございました"</span>
+        <span class="text-line">/</span>
       </div>
     </div>
   </div>
 
-  <!-- ========== ② PROBLEMS SECTION ========== -->
-  <section id="problems" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-primary">
-    <div class="max-w-6xl mx-auto">
+  <!-- ========== TARGET ========== -->
+  <section class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-paper-alt relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-30" aria-hidden="true"></div>
+    <div class="max-w-5xl mx-auto relative z-10">
+      <div class="text-center mb-10 fade-in">
+        <span class="inline-flex items-center gap-2 bg-paper border border-line text-ink-mid text-[11px] font-mono tracking-widest px-3 py-1 rounded-full mb-4">
+          <span class="w-1.5 h-1.5 bg-cta-green rounded-full"></span>FOR YOU
+        </span>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-3 tracking-tight leading-tight">
+          こんな事業者の方の<br class="sm:hidden">
+          <span class="ink-underline">時間を取り戻します</span>
+        </h2>
+        <p class="text-ink-mid text-base">どれか1つでも当てはまれば、お役に立てます</p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-4 fade-in">
+        <div class="bg-paper border border-line rounded-2xl p-6 card-hover flex items-start gap-4">
+          <img src="img/generated/v2/for_you_scale.png" alt="1〜30人規模を表す抽象ネットワーク図" class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 object-contain" loading="lazy">
+          <div class="min-w-0">
+            <p class="font-heading font-bold text-ink text-base mb-1.5">1〜30人規模の事業者</p>
+            <p class="text-ink-mute text-xs leading-relaxed">中小企業 / 個人事業主 / スタートアップ — 専任IT担当がいなくてもOK</p>
+          </div>
+        </div>
+        <div class="bg-paper border border-line rounded-2xl p-6 card-hover flex items-start gap-4">
+          <img src="img/generated/v2/for_you_time.png" alt="雑務に時間を奪われる様子を表す抽象図" class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 object-contain" loading="lazy">
+          <div class="min-w-0">
+            <p class="font-heading font-bold text-ink text-base mb-1.5">雑務に時間を奪われている</p>
+            <p class="text-ink-mute text-xs leading-relaxed">転記 / 要約 / ファイル整理 / 定型メール対応で本業の時間が削られている</p>
+          </div>
+        </div>
+        <div class="bg-paper border border-line rounded-2xl p-6 card-hover flex items-start gap-4">
+          <img src="img/generated/v2/for_you_ai.png" alt="Notion+AI連携を表す抽象ネットワーク図" class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 object-contain" loading="lazy">
+          <div class="min-w-0">
+            <p class="font-heading font-bold text-ink text-base mb-1.5">Notion + AI を使いこなしたい</p>
+            <p class="text-ink-mute text-xs leading-relaxed">可能性は感じている。けれど自社では設計しきれず断片活用で止まっている</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROBLEMS ========== -->
+  <section id="problems" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-paper-alt relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-40" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
       <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Problem</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-4">こんなお悩み、ありませんか？</h2>
-        <p class="text-white/60 text-base max-w-2xl mx-auto">デジタルツールの導入で失敗する企業には、共通のパターンがあります。</p>
+        <span class="inline-flex items-center gap-2 bg-ink text-white text-[11px] font-mono tracking-widest px-3 py-1 rounded-full mb-4">
+          <span class="w-1.5 h-1.5 bg-white rounded-full"></span>PROBLEM
+        </span>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-3 tracking-tight">こんな雑務で、<br class="sm:hidden">本業の時間が消えていませんか？</h2>
+        <p class="text-ink-mid text-base max-w-2xl mx-auto">1〜30人規模の事業者が AI を使いこなせず時間を失う、典型パターンです</p>
       </div>
 
-      <!-- Desktop: bubble cards -->
-      <div class="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14 fade-in">
-        <div class="bg-white rounded-2xl p-6 relative before:content-[''] before:absolute before:-bottom-2 before:left-8 before:w-4 before:h-4 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-base text-primary mb-2">ツールを導入しても定着しない</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">せっかく導入したツールが社員に浸透せず、結局元のやり方に戻ってしまう。</p>
+      <!-- Problem cards: zigzag-style with large mono numbers and prominent left bar -->
+      <div class="grid md:grid-cols-2 gap-5 mb-16 fade-in">
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover">
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
+          <div class="p-6 sm:p-7 pl-8">
+            <div class="flex items-start gap-5">
+              <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">01</span>
+              <div class="flex-1 pt-1">
+                <p class="font-mono text-[10px] text-ink-mute tracking-widest mb-1.5">転記・コピペ</p>
+                <h3 class="font-heading font-bold text-ink text-lg mb-2 leading-snug">毎日30分が手作業で消える</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">フォーム→スプレッドシート→Notion の転記ループ。AI で自動化できるのに人手で消化している。</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+              <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span class="text-ink-mute text-xs font-mono">想定ロス: 月10時間+</span>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-2xl p-6 relative before:content-[''] before:absolute before:-bottom-2 before:left-8 before:w-4 before:h-4 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-base text-primary mb-2">使える人と使えない人の格差</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">ITリテラシーの差で活用度にばらつきが出て、費用対効果が見えない。</p>
+
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover md:mt-8">
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
+          <div class="p-6 sm:p-7 pl-8">
+            <div class="flex items-start gap-5">
+              <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">02</span>
+              <div class="flex-1 pt-1">
+                <p class="font-mono text-[10px] text-ink-mute tracking-widest mb-1.5">情報の散逸</p>
+                <h3 class="font-heading font-bold text-ink text-lg mb-2 leading-snug">ツール間でデータが散らばる</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">Slack / スプレッドシート / メモ / LINE。AI に投げたくても、参照すべきデータが点在している。</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+              <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+              <span class="text-ink-mute text-xs font-mono">参照先: 平均5+ツール</span>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-2xl p-6 relative before:content-[''] before:absolute before:-bottom-2 before:left-8 before:w-4 before:h-4 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-base text-primary mb-2">導入・維持コストだけが膨らむ</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">毎月のライセンス料を払い続けているのに、効果が実感できない。</p>
+
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover">
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
+          <div class="p-6 sm:p-7 pl-8">
+            <div class="flex items-start gap-5">
+              <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">03</span>
+              <div class="flex-1 pt-1">
+                <p class="font-mono text-[10px] text-ink-mute tracking-widest mb-1.5">単発利用で止まる</p>
+                <h3 class="font-heading font-bold text-ink text-lg mb-2 leading-snug">ChatGPTを業務に組み込めない</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">毎回プロンプト書き直し&手コピペ。エージェントの自律実行まで自社では設計しきれない。</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+              <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+              <span class="text-ink-mute text-xs font-mono">活用度: 試作レベル止まり</span>
+            </div>
+          </div>
         </div>
-        <div class="bg-white rounded-2xl p-6 relative before:content-[''] before:absolute before:-bottom-2 before:left-8 before:w-4 before:h-4 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-base text-primary mb-2">業務変化に対応できない</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">新規事業や業務変更に既存ツールが追いつけず、追加コストが発生する。</p>
-        </div>
-        <div class="bg-white rounded-2xl p-6 relative before:content-[''] before:absolute before:-bottom-2 before:left-8 before:w-4 before:h-4 before:bg-white before:rotate-45 before:rounded-sm sm:col-span-2 lg:col-span-1">
-          <h3 class="font-bold text-base text-primary mb-2">Notionの自由度が高すぎて迷う</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">「何でもできる」と聞いたけれど、何からどう始めればいいのかわからない。</p>
-        </div>
-      </div>
-      <!-- Mobile: compact bubble list -->
-      <div class="sm:hidden space-y-4 mb-14 fade-in">
-        <div class="bg-white rounded-xl px-5 py-4 relative before:content-[''] before:absolute before:-bottom-1.5 before:left-6 before:w-3 before:h-3 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-sm text-primary">ツールを導入しても定着しない</h3>
-        </div>
-        <div class="bg-white rounded-xl px-5 py-4 relative before:content-[''] before:absolute before:-bottom-1.5 before:left-6 before:w-3 before:h-3 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-sm text-primary">使える人と使えない人の格差</h3>
-        </div>
-        <div class="bg-white rounded-xl px-5 py-4 relative before:content-[''] before:absolute before:-bottom-1.5 before:left-6 before:w-3 before:h-3 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-sm text-primary">導入・維持コストだけが膨らむ</h3>
-        </div>
-        <div class="bg-white rounded-xl px-5 py-4 relative before:content-[''] before:absolute before:-bottom-1.5 before:left-6 before:w-3 before:h-3 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-sm text-primary">業務変化に対応できない</h3>
-        </div>
-        <div class="bg-white rounded-xl px-5 py-4 relative before:content-[''] before:absolute before:-bottom-1.5 before:left-6 before:w-3 before:h-3 before:bg-white before:rotate-45 before:rounded-sm">
-          <h3 class="font-bold text-sm text-primary">Notionの自由度が高すぎて迷う</h3>
+
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover md:mt-8">
+          <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
+          <div class="p-6 sm:p-7 pl-8">
+            <div class="flex items-start gap-5">
+              <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">04</span>
+              <div class="flex-1 pt-1">
+                <p class="font-mono text-[10px] text-ink-mute tracking-widest mb-1.5">運用に乗らない</p>
+                <h3 class="font-heading font-bold text-ink text-lg mb-2 leading-snug">作っても続かない・元に戻る</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">ベンダーに頼んだ仕組みが現場で回らず、結局元のやり方へ。改修の度に費用が積み上がる。</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+              <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
+              <span class="text-ink-mute text-xs font-mono">改修費が累積</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Affinity Message -->
-      <div class="bg-white rounded-3xl p-8 sm:p-10 lg:p-12 fade-in">
-        <div class="flex flex-col md:flex-row items-center gap-8">
+      <!-- Representative message: dark quote-style card with face-cropped photo -->
+      <div class="bg-ink rounded-3xl p-7 sm:p-10 fade-in max-w-4xl mx-auto relative overflow-hidden">
+        <div class="absolute top-6 left-8 font-serif text-ink-faint text-7xl leading-none select-none opacity-30">"</div>
+        <div class="relative flex flex-col md:flex-row items-center gap-7 md:gap-9">
           <div class="flex-shrink-0">
-            <img src="img/俺透過.png" alt="代表メッセージ" class="w-28 h-28 rounded-full object-cover object-top border-4 border-accent/30 shadow-xl" width="112" height="112">
+            <div class="w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-full border-4 border-white/15 shadow-2xl overflow-hidden bg-paper-alt">
+              <img src="img/俺顔.png"
+                   alt="Notion × AI 業務改善コンサル 代表"
+                   class="w-full h-full object-cover"
+                   loading="lazy">
+            </div>
           </div>
-          <div>
-            <p class="text-primary text-base sm:text-lg leading-relaxed mb-4">
-              「ツールを入れれば業務が変わる」と思って導入したのに、結局うまくいかなかった——<br>
-              <strong class="text-accent">私自身、何度もそんな現場を目の当たりにしてきました。</strong>
+          <div class="flex-1 text-center md:text-left">
+            <p class="text-white text-lg sm:text-xl font-heading font-bold leading-relaxed mb-3">
+              問題は AI の性能ではなく、<span class="bg-white text-ink px-2 py-0.5 rounded-md">「設計」</span>です。
             </p>
-            <p class="text-text-secondary text-sm leading-relaxed mb-3">
-              問題はツールではなく、"仕組み"にあります。業務フローを理解し、使う人に合わせた設計をし、定着するまで伴走する。それこそが本当のDX化だと、私は考えています。
+            <p class="text-white/70 text-sm leading-relaxed mb-3">
+              蓄積（Notion）→ AIが読む → エージェントが動く → 書き戻す。この一連を一気通貫で組んで、初めて雑務時間は半減します。
             </p>
-            <p class="text-accent font-heading font-semibold text-sm">— DX Partners 代表</p>
+            <p class="text-white/50 font-heading font-semibold text-xs tracking-wide">— Notion × AI 業務改善コンサル 代表</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== ③ WHY NOTION SECTION ========== -->
-  <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-surface">
-    <div class="max-w-6xl mx-auto">
-      <!-- Problem Story: 負のループ -->
-      <div class="text-center mb-16 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Solution</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-6">なぜ、Notionなのか？</h2>
-        <div class="max-w-3xl mx-auto">
-          <p class="text-text-secondary text-base leading-relaxed mb-8">多くの企業が陥る「DXの落とし穴」があります。</p>
-          <!-- Negative Loop: Mobile 2x2 / Desktop horizontal -->
-          <!-- Desktop: horizontal row -->
-          <div class="hidden sm:flex items-center justify-center gap-2 mb-8">
-            <span class="bg-red-50 text-red-700 text-sm font-medium px-4 py-2.5 rounded-full border border-red-200">ツールが増える</span>
-            <svg class="w-5 h-5 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-            <span class="bg-red-50 text-red-700 text-sm font-medium px-4 py-2.5 rounded-full border border-red-200">情報が散らばる</span>
-            <svg class="w-5 h-5 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-            <span class="bg-red-50 text-red-700 text-sm font-medium px-4 py-2.5 rounded-full border border-red-200">全体像が見えない</span>
-            <svg class="w-5 h-5 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-            <span class="bg-red-50 text-red-700 text-sm font-medium px-4 py-2.5 rounded-full border border-red-200">DXが形骸化</span>
-          </div>
-          <!-- Mobile: 2x2 loop -->
-          <div class="sm:hidden grid grid-cols-[1fr_auto_1fr] items-center justify-items-center gap-y-2 gap-x-2 max-w-xs mx-auto mb-8">
-            <!-- Row 1: ツールが増える → 情報が散らばる -->
-            <span class="bg-red-50 text-red-700 text-xs font-medium px-3 py-2 rounded-full border border-red-200 w-full text-center">ツールが増える</span>
-            <svg class="w-4 h-4 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-            <span class="bg-red-50 text-red-700 text-xs font-medium px-3 py-2 rounded-full border border-red-200 w-full text-center">情報が散らばる</span>
-            <!-- Row 2: ↑ ... ↓ -->
-            <svg class="w-4 h-4 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5L12 3m0 0l7.5 7.5M12 3v18"/></svg>
-            <span></span>
-            <svg class="w-4 h-4 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/></svg>
-            <!-- Row 3: DXが形骸化 ← 全体像が見えない -->
-            <span class="bg-red-50 text-red-700 text-xs font-medium px-3 py-2 rounded-full border border-red-200 w-full text-center">DXが形骸化</span>
-            <svg class="w-4 h-4 text-text-muted shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
-            <span class="bg-red-50 text-red-700 text-xs font-medium px-3 py-2 rounded-full border border-red-200 w-full text-center">全体像が見えない</span>
-          </div>
-          <p class="text-primary font-bold text-lg">Notionは、この構造ごと解消できる<br class="sm:hidden">数少ないプラットフォームです。</p>
-        </div>
-      </div>
-
-      <!-- 4 Reason Cards: Desktop 2x2 Grid -->
-      <div class="hidden sm:grid sm:grid-cols-2 gap-6 mb-14 fade-in">
-        <!-- A: ツール乱立の根本解決 -->
-        <div class="bg-white rounded-2xl p-8 border border-border-light shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-3">バラバラのツールを、1つに集約</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">タスク管理、ドキュメント、データベース、ナレッジ共有。通常4〜5個のツールが必要な業務を、<strong class="text-primary">Notionひとつに統合</strong>できます。情報の分散がなくなり、「あのデータどこだっけ？」がゼロになります。</p>
-        </div>
-        <!-- B: 自分たちで育てられる -->
-        <div class="bg-white rounded-2xl p-8 border border-border-light shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.03 1.029-5.997L2.13 7.399l6.024-.876L11.42 1.5l3.266 5.023 6.024.876-4.935 4.804 1.029 5.997-5.384-3.03z"/></svg>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-3">納品後、自分たちで進化させられる</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">多くのSaaSは「提供された型」に業務を合わせるしかありません。Notionは<strong class="text-primary">ノーコードで現場の担当者が改修可能</strong>。業務が変わっても、外注なしで自社で育て続けられる数少ないツールです。</p>
-        </div>
-        <!-- C: リレーションで業務がつながる -->
-        <div class="bg-white rounded-2xl p-8 border border-border-light shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-3">データベース同士がつながる</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">顧客→案件→タスク→議事録。Notionのリレーション機能で、<strong class="text-primary">業務の全体像をひとつの画面で把握</strong>できます。スプレッドシートでは実現できない「情報のつながり」が、判断スピードを変えます。</p>
-        </div>
-        <!-- D: AI統合の将来性 -->
-        <div class="bg-white rounded-2xl p-8 border border-border-light shadow-sm">
-          <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-3">AIが、蓄積した情報を活かしてくれる</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">Notion AIはDB・ドキュメント・ナレッジを<strong class="text-primary">横断的に検索・要約・提案</strong>。情報が1箇所に集約されているからこそ、AIの恩恵を最大限に受けられます。ツールが分散していては、AIも分散します。</p>
-        </div>
-      </div>
-
-      <!-- 4 Reason Cards: Mobile Accordion -->
-      <div class="sm:hidden space-y-3 mb-14 fade-in">
-        <div class="faq-item bg-white rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between px-5 py-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
-              </div>
-              <h3 class="font-heading font-bold text-sm text-primary">バラバラのツールを、1つに集約</h3>
-            </div>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
-          </div>
-          <div class="faq-answer px-5">
-            <p class="text-text-secondary text-sm leading-relaxed pb-5">タスク管理、ドキュメント、データベース、ナレッジ共有。通常4〜5個のツールが必要な業務を、<strong class="text-primary">Notionひとつに統合</strong>できます。情報の分散がなくなり、「あのデータどこだっけ？」がゼロになります。</p>
-          </div>
-        </div>
-        <div class="faq-item bg-white rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between px-5 py-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.384 3.03 1.029-5.997L2.13 7.399l6.024-.876L11.42 1.5l3.266 5.023 6.024.876-4.935 4.804 1.029 5.997-5.384-3.03z"/></svg>
-              </div>
-              <h3 class="font-heading font-bold text-sm text-primary">納品後、自分たちで進化させられる</h3>
-            </div>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
-          </div>
-          <div class="faq-answer px-5">
-            <p class="text-text-secondary text-sm leading-relaxed pb-5">多くのSaaSは「提供された型」に業務を合わせるしかありません。Notionは<strong class="text-primary">ノーコードで現場の担当者が改修可能</strong>。業務が変わっても、外注なしで自社で育て続けられる数少ないツールです。</p>
-          </div>
-        </div>
-        <div class="faq-item bg-white rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between px-5 py-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
-              </div>
-              <h3 class="font-heading font-bold text-sm text-primary">データベース同士がつながる</h3>
-            </div>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
-          </div>
-          <div class="faq-answer px-5">
-            <p class="text-text-secondary text-sm leading-relaxed pb-5">顧客→案件→タスク→議事録。Notionのリレーション機能で、<strong class="text-primary">業務の全体像をひとつの画面で把握</strong>できます。スプレッドシートでは実現できない「情報のつながり」が、判断スピードを変えます。</p>
-          </div>
-        </div>
-        <div class="faq-item bg-white rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between px-5 py-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/></svg>
-              </div>
-              <h3 class="font-heading font-bold text-sm text-primary">AIが、蓄積した情報を活かしてくれる</h3>
-            </div>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
-          </div>
-          <div class="faq-answer px-5">
-            <p class="text-text-secondary text-sm leading-relaxed pb-5">Notion AIはDB・ドキュメント・ナレッジを<strong class="text-primary">横断的に検索・要約・提案</strong>。情報が1箇所に集約されているからこそ、AIの恩恵を最大限に受けられます。ツールが分散していては、AIも分散します。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Workspace image: desktop only -->
-      <div class="hidden sm:block rounded-3xl overflow-hidden shadow-2xl border border-border-light mb-12 fade-in">
-        <img src="img/generated/notion-workspace.png" alt="Notionで業務を一元管理するワークスペース" class="w-full h-auto object-cover" width="1280" height="720" loading="lazy">
-      </div>
-
-      <!-- Key message -->
-      <div class="text-center fade-in">
-        <div class="inline-flex items-center gap-3 bg-accent/10 border border-accent/20 rounded-full px-6 py-3">
-          <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
-          <span class="text-primary font-semibold text-sm">業務ツールに合わせるのではなく、業務フローにNotionを合わせる。それが定着するDX化の鍵です。</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ④ SERVICES SECTION ========== -->
-  <section id="services" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-6xl mx-auto">
+  <!-- ========== ARCHITECTURE: ANIMATED 4-LAYER LOOP ========== -->
+  <section id="architecture" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-paper relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-50" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
       <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Services</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">「作って終わり」にしない、<br class="hidden sm:block">6つの一気通貫サポート</h2>
-        <p class="text-text-secondary text-base max-w-2xl mx-auto">構築からマニュアル作成、定着支援まで。御社の業務に合わせたDX化を、ワンストップで実現します。</p>
+        <p class="text-ink-mute font-mono font-semibold text-xs tracking-widest uppercase mb-3">Architecture</p>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-4 tracking-tight">4層が、止まらず回り続ける。</h2>
+        <p class="text-ink-mid text-base max-w-2xl mx-auto">Notion(蓄積) → AI読込 → エージェント実行 → Notion書き戻し。<br class="hidden sm:block">この自己進化ループを<strong class="text-ink">分業せず一気通貫で設計できる</strong>、これが最適解です。</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 fade-in">
-        <!-- Service 1: ヒアリング（強調） -->
-        <div class="relative bg-primary rounded-2xl p-7 border-2 border-accent shadow-xl card-hover cursor-pointer group sm:col-span-2 lg:col-span-3">
-          <!-- ここが大事バッジ -->
-          <div class="absolute -top-3 left-6 inline-flex items-center gap-1.5 bg-accent text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            ここが大事です
-          </div>
-          <div class="flex flex-col md:flex-row items-start gap-6 mt-3">
-            <div class="w-16 h-16 rounded-2xl gold-gradient flex items-center justify-center shadow-lg flex-shrink-0">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 1.136.845 2.1 1.976 2.193 1.31.109 2.636.163 3.976.163l3 3v-3.091c.34-.02.68-.045 1.02-.072 1.133-.093 1.98-1.057 1.98-2.193V10.608c0-.969-.616-1.813-1.5-2.097z"/></svg>
+      <!-- Main animated loop diagram -->
+      <div class="grid lg:grid-cols-[1fr_1fr] gap-10 lg:gap-16 items-center fade-in">
+        <!-- Loop visual -->
+        <div class="order-2 lg:order-1">
+          <div class="loop-stage">
+            <div class="ring r1 pulse"></div>
+            <div class="ring r2 dashed pulse"></div>
+            <div class="ring r3 pulse"></div>
+            <div class="ring r4 dashed pulse"></div>
+
+            <div class="orbit outer"></div>
+            <div class="orbit mid"></div>
+            <div class="orbit inner"></div>
+            <div class="tick-orbit-1"></div>
+            <div class="tick-orbit-2"></div>
+
+            <div class="layer-pill" style="top: 12%; left: 50%;">
+              <span class="num">LAYER 4</span><span class="name">チーフ AI</span>
             </div>
-            <div class="flex-1">
-              <h3 class="font-heading font-bold text-xl text-white mb-3">徹底ヒアリング — 全業務を棚卸しし、課題を明確化</h3>
-              <p class="text-white/70 text-sm leading-relaxed mb-4">ただ作るだけではありません。複数回のヒアリングで全ての業務フローを徹底的に棚卸し。一つ一つの業務で発生する課題を明確化し、<strong class="text-accent">どこにNotionを使えば業務時間を短縮できるか、人の作業を減らせるか</strong>を具体的にご提案します。</p>
-              <div class="flex flex-wrap gap-3">
-                <span class="inline-flex items-center gap-1.5 bg-white/10 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full">
-                  <svg class="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  全業務の棚卸し
-                </span>
-                <span class="inline-flex items-center gap-1.5 bg-white/10 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full">
-                  <svg class="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  課題の明確化
-                </span>
-                <span class="inline-flex items-center gap-1.5 bg-white/10 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full">
-                  <svg class="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  具体的な改善提案
-                </span>
-                <span class="inline-flex items-center gap-1.5 bg-white/10 text-white/80 text-xs font-medium px-3 py-1.5 rounded-full">
-                  <svg class="w-3.5 h-3.5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  業務時間の短縮シミュレーション
-                </span>
+            <div class="layer-pill" style="top: 50%; left: 80%;">
+              <span class="num">LAYER 3</span><span class="name">エージェント層</span>
+            </div>
+            <div class="layer-pill" style="top: 88%; left: 50%;">
+              <span class="num">LAYER 2</span><span class="name">AI 自動化</span>
+            </div>
+            <div class="layer-pill" style="top: 50%; left: 20%;">
+              <span class="num">LAYER 1</span><span class="name">Notion 設計</span>
+            </div>
+
+            <!-- Flow steps as small chips between layers (inner ring r2 ~58%) -->
+            <div class="flow-step" style="top: 29%; left: 71%;">読込</div>
+            <div class="flow-step" style="top: 71%; left: 71%;">実行</div>
+            <div class="flow-step" style="top: 71%; left: 29%;">書き戻し</div>
+            <div class="flow-step" style="top: 29%; left: 29%;">改善</div>
+
+            <div class="loop-core">
+              <span class="core-label">CORE</span>
+              <span class="core-name">Notion<br>+ Logs</span>
+            </div>
+          </div>
+          <p class="font-mono text-[11px] text-ink-mute text-center mt-5 tracking-widest">SELF-EVOLVING LOOP — RUNNING 24 / 7</p>
+        </div>
+
+        <!-- Right: 4-step explanation -->
+        <div class="order-1 lg:order-2">
+          <div class="space-y-4">
+            <div class="flex gap-4 items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-mono font-bold text-xs">01</div>
+              <div>
+                <h3 class="font-heading font-bold text-ink text-base mb-0.5">Notion に業務ログが溜まる</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">構造化されたDBに業務データ・履歴・ナレッジが蓄積される。</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-mono font-bold text-xs">02</div>
+              <div>
+                <h3 class="font-heading font-bold text-ink text-base mb-0.5">AI が読み込み、判断する</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">要約・分類・優先順位付けを AI に任せ、人は確認だけ。</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-mono font-bold text-xs">03</div>
+              <div>
+                <h3 class="font-heading font-bold text-ink text-base mb-0.5">エージェントが業務を実行</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">下書き作成・メール返信・通知振り分けを業務単位で自律実行。</p>
+              </div>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-ink text-white flex items-center justify-center font-mono font-bold text-xs">04</div>
+              <div>
+                <h3 class="font-heading font-bold text-ink text-base mb-0.5">結果を Notion に書き戻し</h3>
+                <p class="text-ink-mid text-sm leading-relaxed">実行結果が再び蓄積。<strong class="text-ink">使うほど賢くなる仕組み</strong>（チーフAIが継続最適化）。</p>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Service 2 -->
-        <div class="bg-surface rounded-2xl p-7 border border-border-light card-hover cursor-pointer group">
-          <div class="w-14 h-14 rounded-2xl gold-gradient flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl transition-shadow">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
+
+          <!-- Differentiation callout (compressed from bottom) -->
+          <div class="mt-8 bg-ink text-white rounded-xl p-5 text-sm leading-relaxed">
+            <span class="font-mono text-[10px] tracking-widest text-white/50 block mb-1.5">なぜ希少か</span>
+            Notion 単体構築会社・AI 自動化会社・エージェント開発会社が分かれて存在する中、<strong class="text-white">4層を一気通貫で設計し中小・個人事業主に提供できる事業者は限られます。</strong>分業するとNotion構造とAI前提がズレ、運用で破綻します。
           </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-2">外部ツール連携</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">Slack・GAS・LINEなど外部ツールとの連携も対応。Notion単体に縛られない柔軟な構成を実現。</p>
-        </div>
-        <!-- Service 5 -->
-        <div class="bg-surface rounded-2xl p-7 border border-border-light card-hover cursor-pointer group">
-          <div class="w-14 h-14 rounded-2xl gold-gradient flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl transition-shadow">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0118 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0118 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 016 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5"/></svg>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-2">オーダーメイド映像マニュアル</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">御社専用の画面録画マニュアルを毎回手作りで提供。いつでも見返して操作を確認できます。</p>
-        </div>
-        <!-- Service 6 -->
-        <div class="bg-surface rounded-2xl p-7 border border-border-light card-hover cursor-pointer group">
-          <div class="w-14 h-14 rounded-2xl gold-gradient flex items-center justify-center mb-5 shadow-lg group-hover:shadow-xl transition-shadow">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.712 4.33a9.027 9.027 0 011.652 1.306c.51.51.944 1.064 1.306 1.652M16.712 4.33l-3.448 4.138m3.448-4.138a9.014 9.014 0 00-9.424 0M19.67 7.288l-4.138 3.448m4.138-3.448a9.014 9.014 0 010 9.424m-4.138-5.976a3.736 3.736 0 00-.88-1.388 3.737 3.737 0 00-1.388-.88m2.268 2.268a3.765 3.765 0 010 2.528m-2.268-4.796a3.765 3.765 0 00-2.528 0m4.796 4.796c-.181.506-.475.982-.88 1.388a3.736 3.736 0 01-1.388.88m2.268-2.268l4.138 3.448m0 0a9.027 9.027 0 01-1.306 1.652 9.027 9.027 0 01-1.652 1.306m0 0l-3.448-4.138m3.448 4.138a9.014 9.014 0 01-9.424 0m5.976-4.138a3.765 3.765 0 01-2.528 0m0 0a3.736 3.736 0 01-1.388-.88 3.737 3.737 0 01-.88-1.388m0 0l-4.138 3.448m4.138-3.448a3.765 3.765 0 010-2.528m-4.138 5.976a9.028 9.028 0 01-1.306-1.652 9.027 9.027 0 01-1.652-1.306m0 0l4.138-3.448M4.33 16.712a9.014 9.014 0 010-9.424m4.138 5.976a3.765 3.765 0 00-2.528 0m0 0a3.736 3.736 0 00-1.388.88 3.737 3.737 0 00-.88 1.388m0 0L4.33 7.288m0 0a9.028 9.028 0 011.652-1.306 9.027 9.027 0 011.306-1.652"/></svg>
-          </div>
-          <h3 class="font-heading font-bold text-lg text-primary mb-2">納品後も定着まで伴走</h3>
-          <p class="text-text-secondary text-sm leading-relaxed">構築して終わりにはしません。修正・改善を無制限で対応し、業務にフィットするまで伴走します。</p>
         </div>
       </div>
 
-      <!-- Mid CTA -->
+      <!-- Mid CTA (after the most exciting section) -->
       <div class="text-center mt-14 fade-in">
-        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-cta-green hover:bg-cta-green-hover text-white font-bold text-base px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl cta-pulse">
-          御社の業務フローを一緒に整理しませんか？
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-ink hover:bg-ink-soft text-white font-bold text-base px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl cta-pulse">
+          このループを自社で組む相談をする
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
-        <p class="text-text-muted text-xs mt-3">無理な営業は一切しません</p>
+        <p class="text-ink-mute text-xs mt-3">30分・無料 / 無理な営業は一切しません</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== ⑤ CASE STUDIES ========== -->
-  <section id="cases" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-primary">
+  <!-- ========== USE CASES ========== -->
+  <section id="cases" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-paper-soft">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Case Studies</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-4">導入事例</h2>
-        <p class="text-white/60 text-base max-w-2xl mx-auto">業種を問わず、あらゆる業務のDX化を実現しています。</p>
+      <div class="text-center mb-12 fade-in">
+        <p class="text-ink-mute font-mono font-semibold text-xs tracking-widest uppercase mb-3">Use Cases</p>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-3 tracking-tight">業種別 ユースケース</h2>
+        <p class="text-ink-mid text-base max-w-xl mx-auto">「雑務 → Notion + AI で仕組み化した結果」のサマリ。</p>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-6 fade-in">
-        <!-- Case 1 -->
-        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 card-hover cursor-pointer">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
-            </div>
-            <span class="text-accent text-xs font-heading font-semibold tracking-wider uppercase">開発チーム</span>
+      <!-- Featured 3 cases (text-only, compact) -->
+      <div class="grid md:grid-cols-3 gap-4 fade-in mb-8">
+        <div class="bg-paper rounded-xl border border-line card-hover p-5 flex flex-col">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-mono text-[10px] text-ink-mute tracking-widest">CASE 01</span>
+            <span class="h-px flex-1 bg-line"></span>
+            <span class="font-mono text-[10px] text-ink-mute tracking-widest">税理士事務所</span>
           </div>
-          <h3 class="font-heading font-bold text-lg text-white mb-3">GitHub x Notion 連携</h3>
-          <div class="space-y-3 mb-5">
-            <div>
-              <p class="text-red-400 text-xs font-semibold mb-1">BEFORE</p>
-              <p class="text-white/60 text-sm">GitHubのIssueとNotionが別々で管理が煩雑。情報の二重管理が発生。</p>
-            </div>
-            <div class="border-t border-white/10 pt-3">
-              <p class="text-cta-green text-xs font-semibold mb-1">AFTER</p>
-              <p class="text-white/80 text-sm">Issueの作成・コメント・編集がリアルタイムでNotionに反映。一元管理を実現。</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2 text-accent/70 text-xs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>
-            外部ツール連携の柔軟性
+          <h3 class="font-heading font-bold text-ink text-base mb-3 leading-snug">月初ルーティンの自動化</h3>
+          <div class="bg-paper-alt rounded-md p-3 mt-auto text-xs">
+            <p class="text-ink-mid leading-relaxed mb-1.5"><span class="text-ink-mute font-mono text-[9px] tracking-wider mr-1.5">BEFORE</span>月初の請求業務に毎月3時間</p>
+            <p class="text-ink font-bold leading-relaxed"><span class="text-ink-mute font-mono text-[9px] tracking-wider mr-1.5">AFTER</span>Notion + AI 自動整理 → <span class="text-cta-green">30分</span></p>
           </div>
         </div>
 
-        <!-- Case 2 -->
-        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 card-hover cursor-pointer">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>
-            </div>
-            <span class="text-accent text-xs font-heading font-semibold tracking-wider uppercase">採用・人材管理</span>
+        <div class="bg-paper rounded-xl border border-line card-hover p-5 flex flex-col">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-mono text-[10px] text-ink-mute tracking-widest">CASE 02</span>
+            <span class="h-px flex-1 bg-line"></span>
+            <span class="font-mono text-[10px] text-ink-mute tracking-widest">人材エージェント</span>
           </div>
-          <h3 class="font-heading font-bold text-lg text-white mb-3">人材管理システム構築</h3>
-          <div class="space-y-3 mb-5">
-            <div>
-              <p class="text-red-400 text-xs font-semibold mb-1">BEFORE</p>
-              <p class="text-white/60 text-sm">応募経路・面接通過率・内定率がバラバラのツールで管理され把握が困難。</p>
-            </div>
-            <div class="border-t border-white/10 pt-3">
-              <p class="text-cta-green text-xs font-semibold mb-1">AFTER</p>
-              <p class="text-white/80 text-sm">Notionの機能のみで人材管理システムを構築。全データをデータベースで可視化。</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2 text-accent/70 text-xs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5"/></svg>
-            Notion単体での高度なデータ管理
+          <h3 class="font-heading font-bold text-ink text-base mb-3 leading-snug">候補者要約 + KPI 管理</h3>
+          <div class="bg-paper-alt rounded-md p-3 mt-auto text-xs">
+            <p class="text-ink-mid leading-relaxed mb-1.5"><span class="text-ink-mute font-mono text-[9px] tracking-wider mr-1.5">BEFORE</span>媒体ごとに集計＋面談前要約を手作業</p>
+            <p class="text-ink font-bold leading-relaxed"><span class="text-ink-mute font-mono text-[9px] tracking-wider mr-1.5">AFTER</span>Notion DB + AI で自動化 → <span class="text-cta-green">面談に集中</span></p>
           </div>
         </div>
 
-        <!-- Case 3 -->
-        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 card-hover cursor-pointer">
-          <div class="flex items-center gap-3 mb-5">
-            <div class="w-10 h-10 rounded-xl bg-accent/20 flex items-center justify-center">
-              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
-            </div>
-            <span class="text-accent text-xs font-heading font-semibold tracking-wider uppercase">顧客管理・CRM</span>
+        <div class="bg-paper rounded-xl border border-line card-hover p-5 flex flex-col">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="font-mono text-[10px] text-ink-mute tracking-widest">CASE 03</span>
+            <span class="h-px flex-1 bg-line"></span>
+            <span class="font-mono text-[10px] text-ink-mute tracking-widest">クリエイター</span>
           </div>
-          <h3 class="font-heading font-bold text-lg text-white mb-3">LINE x Notion CRM 連携</h3>
-          <div class="space-y-3 mb-5">
-            <div>
-              <p class="text-red-400 text-xs font-semibold mb-1">BEFORE</p>
-              <p class="text-white/60 text-sm">LINE友達リストと顧客情報が別々で管理。接点情報が属人化。</p>
-            </div>
-            <div class="border-t border-white/10 pt-3">
-              <p class="text-cta-green text-xs font-semibold mb-1">AFTER</p>
-              <p class="text-white/80 text-sm">LINE友達リストをNotionに取り込みCRMに統合。全アクションを一元管理。</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2 text-accent/70 text-xs">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375"/></svg>
-            業務一元管理の具体的成果
+          <h3 class="font-heading font-bold text-ink text-base mb-3 leading-snug">SNS 台本量産</h3>
+          <div class="bg-paper-alt rounded-md p-3 mt-auto text-xs">
+            <p class="text-ink-mid leading-relaxed mb-1.5"><span class="text-ink-mute font-mono text-[9px] tracking-wider mr-1.5">BEFORE</span>企画→台本→編集が分断、毎回ゼロから</p>
+            <p class="text-ink font-bold leading-relaxed"><span class="text-ink-mute font-mono text-[9px] tracking-wider mr-1.5">AFTER</span>Notion + AI で台本自動生成 → <span class="text-cta-green">本数2-3倍</span></p>
           </div>
         </div>
       </div>
+
+      <!-- Brief mention of other industries (single line) -->
+      <p class="text-center text-ink-mute text-sm fade-in">
+        他にも <span class="text-ink font-semibold">建設業 / ジュエリー店 / 美容サロン / 営業会社</span> など多業種で実績があります
+      </p>
     </div>
   </section>
 
-  <!-- ========== SOCIAL PROOF ========== -->
-  <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-surface">
+  <!-- ========== PRICING ========== -->
+  <section id="pricing" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-paper">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Results</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">選ばれている理由</h2>
+      <div class="text-center mb-10 fade-in">
+        <p class="text-ink-mute font-mono font-semibold text-xs tracking-widest uppercase mb-3">Pricing</p>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-4 tracking-tight">料金プラン</h2>
+        <p class="text-ink-mid text-base max-w-2xl mx-auto"><strong class="text-ink">Care（月額・保守）</strong> と <strong class="text-ink">Build（新規構築）</strong> の2系統。組み合わせて利用可能です。</p>
       </div>
 
-      <!-- Stats -->
-      <div class="grid grid-cols-3 gap-4 sm:gap-6 mb-14 fade-in">
-        <div class="text-center bg-white rounded-2xl py-8 sm:py-10 px-4 border border-border-light shadow-sm">
-          <div class="flex items-center justify-center gap-1 mb-2">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
+      <!-- Recommendation banner -->
+      <div class="mb-12 fade-in max-w-3xl mx-auto">
+        <div class="bg-ink rounded-2xl p-5 sm:p-6 text-white flex items-start gap-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-cta-green flex items-center justify-center font-bold text-base">★</div>
+          <div class="flex-1">
+            <p class="font-mono text-[10px] tracking-widest text-white/50 mb-1">迷ったらこちら</p>
+            <p class="text-white text-sm sm:text-base leading-relaxed">
+              <strong class="text-white">初めての方は</strong> <span class="bg-white/10 px-2 py-0.5 rounded mx-0.5">Build Standard</span> で構築 → 納品後 <span class="bg-white/10 px-2 py-0.5 rounded mx-0.5">Care Standard</span> に移行が一番選ばれている流れです。
+            </p>
           </div>
-          <p class="font-heading font-bold text-2xl sm:text-4xl text-primary mb-1">4.9</p>
-          <p class="text-text-secondary text-xs sm:text-sm">ココナラ平均評価</p>
-        </div>
-        <div class="text-center bg-white rounded-2xl py-8 sm:py-10 px-4 border border-border-light shadow-sm">
-          <div class="flex items-center justify-center gap-1 mb-2">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
-          </div>
-          <p class="font-heading font-bold text-2xl sm:text-4xl text-primary mb-1">30<span class="text-lg sm:text-2xl">件+</span></p>
-          <p class="text-text-secondary text-xs sm:text-sm">累計販売実績</p>
-        </div>
-        <div class="text-center bg-white rounded-2xl py-8 sm:py-10 px-4 border border-border-light shadow-sm">
-          <div class="flex items-center justify-center gap-1 mb-2">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z"/></svg>
-          </div>
-          <p class="font-heading font-bold text-2xl sm:text-4xl text-primary mb-1">99<span class="text-lg sm:text-2xl">%</span></p>
-          <p class="text-text-secondary text-xs sm:text-sm">お客様満足度</p>
         </div>
       </div>
 
-      <!-- Customer Voices -->
-      <div class="grid sm:grid-cols-3 gap-6 fade-in">
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-border-light shadow-sm">
-          <div class="flex items-center gap-1 mb-4">
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-          </div>
-          <p class="text-text-secondary text-sm leading-relaxed mb-4">お客様カルテの作成を作って頂き、繊細な内容にも対応して頂き本当にありがとうございました。また是非機会がありましたらお願い申し上げます。</p>
-          <p class="text-primary font-semibold text-sm">A様 <span class="text-text-muted font-normal">/ 女性</span></p>
+      <!-- BUILD: Standard prominent + Light/Premium compact -->
+      <div class="mb-12 fade-in">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="font-mono text-xs tracking-widest text-ink">① BUILD</span>
+          <span class="h-px flex-1 bg-line"></span>
+          <span class="text-ink-mute text-xs">新規構築・スポット</span>
         </div>
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-border-light shadow-sm">
-          <div class="flex items-center gap-1 mb-4">
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-          </div>
-          <p class="text-text-secondary text-sm leading-relaxed mb-4">ビデオチャットで丁寧に教えていただきとても参考になりました。こちらの要望に応えていただき感謝しています。また不明点などでてきたときには是非お願いしたいと思いました。</p>
-          <p class="text-primary font-semibold text-sm">B様 <span class="text-text-muted font-normal">/ 男性</span></p>
-        </div>
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-border-light shadow-sm">
-          <div class="flex items-center gap-1 mb-4">
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-            <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd"/></svg>
-          </div>
-          <p class="text-text-secondary text-sm leading-relaxed mb-4">とても分かりやすく、最適な提案をしてくださったので、疑問や課題が解決しました。みずきさんにお願いしてよかったです！またつまずくことがありましたら、ぜひご相談させてください。</p>
-          <p class="text-primary font-semibold text-sm">C様 <span class="text-text-muted font-normal">/ 男性</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ========== ⑥ FLOW SECTION ========== -->
-  <section id="flow" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Flow</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">ご支援の流れ</h2>
-        <p class="text-text-secondary text-base max-w-2xl mx-auto">お問い合わせから運用開始まで、安心のステップで進行します。</p>
-      </div>
-
-      <!-- Consultation image -->
-      <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-xl border border-border-light mb-14 fade-in">
-        <img src="img/generated/consultation.png" alt="DXコンサルティングの打ち合わせ風景" class="w-full h-auto object-cover" width="1280" height="720" loading="lazy">
-      </div>
-
-      <div class="max-w-3xl mx-auto space-y-0 fade-in">
-        <!-- Step 1 -->
-        <div class="flex gap-6 items-start group">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-white font-heading font-bold text-sm shadow-lg flex-shrink-0">01</div>
-            <div class="w-0.5 h-16 bg-gradient-to-b from-accent/40 to-accent/10 mt-2"></div>
+        <!-- Featured: Build Standard (full width hero card) -->
+        <div class="bg-ink rounded-2xl p-6 sm:p-8 border-2 border-ink card-hover relative shadow-2xl text-white mb-4">
+          <div class="absolute -top-3 left-6 inline-flex items-center gap-1.5 bg-white text-ink text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap border border-ink">
+            ★ 一番選ばれているプラン
           </div>
-          <div class="pb-10">
-            <h3 class="font-heading font-bold text-lg text-primary mb-1">無料ヒアリング申し込み</h3>
-            <p class="text-text-secondary text-sm">フォームからお気軽にお申し込みください。3分で完了します。</p>
-          </div>
-        </div>
-        <!-- Step 2 -->
-        <div class="flex gap-6 items-start group">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-white font-heading font-bold text-sm shadow-lg flex-shrink-0">02</div>
-            <div class="w-0.5 h-16 bg-gradient-to-b from-accent/40 to-accent/10 mt-2"></div>
-          </div>
-          <div class="pb-10">
-            <h3 class="font-heading font-bold text-lg text-primary mb-1">初回ヒアリング</h3>
-            <p class="text-text-secondary text-sm">業務フローと課題を丁寧にお伺いします。全業務を対象に棚卸しを行います。</p>
-          </div>
-        </div>
-        <!-- Step 3 -->
-        <div class="flex gap-6 items-start group">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-white font-heading font-bold text-sm shadow-lg flex-shrink-0">03</div>
-            <div class="w-0.5 h-16 bg-gradient-to-b from-accent/40 to-accent/10 mt-2"></div>
-          </div>
-          <div class="pb-10">
-            <h3 class="font-heading font-bold text-lg text-primary mb-1">要件定義・提案書提出</h3>
-            <p class="text-text-secondary text-sm">課題を明確にした上で、Notion導入時の改善余地を具体的にご提案します。</p>
-          </div>
-        </div>
-        <!-- Step 4 -->
-        <div class="flex gap-6 items-start group">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-white font-heading font-bold text-sm shadow-lg flex-shrink-0">04</div>
-            <div class="w-0.5 h-16 bg-gradient-to-b from-accent/40 to-accent/10 mt-2"></div>
-          </div>
-          <div class="pb-10">
-            <h3 class="font-heading font-bold text-lg text-primary mb-1">Notion構築</h3>
-            <p class="text-text-secondary text-sm">業務フローに最適化されたNotionシステムを構築。UI設計も含めて対応します。</p>
-          </div>
-        </div>
-        <!-- Step 5 -->
-        <div class="flex gap-6 items-start group">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-white font-heading font-bold text-sm shadow-lg flex-shrink-0">05</div>
-            <div class="w-0.5 h-16 bg-gradient-to-b from-accent/40 to-accent/10 mt-2"></div>
-          </div>
-          <div class="pb-10">
-            <h3 class="font-heading font-bold text-lg text-primary mb-1">フィードバック・修正</h3>
-            <p class="text-text-secondary text-sm">実際に使ってみてのフィードバックをもとに、複数回の修正を行います。</p>
-          </div>
-        </div>
-        <!-- Step 6 -->
-        <div class="flex gap-6 items-start group">
-          <div class="flex flex-col items-center">
-            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-white font-heading font-bold text-sm shadow-lg flex-shrink-0">06</div>
-          </div>
-          <div>
-            <h3 class="font-heading font-bold text-lg text-primary mb-1">納品・運用サポート開始</h3>
-            <p class="text-text-secondary text-sm">オーダーメイドの映像マニュアルと共に納品。定着するまで継続サポートします。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ⑦ OFFER SECTION ========== -->
-  <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-surface">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Special Offer</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">無料ヒアリングの特典</h2>
-        <p class="text-text-secondary text-base max-w-2xl mx-auto">まずはお気軽にご相談ください。ヒアリングだけでも価値をお届けします。</p>
-      </div>
-
-      <div class="max-w-2xl mx-auto fade-in">
-        <div class="bg-white rounded-2xl p-8 sm:p-10 border border-accent/20 shadow-lg relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full"></div>
-          <div class="flex items-start gap-5">
-            <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-              <svg class="w-7 h-7 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+          <div class="grid md:grid-cols-[1fr_2fr] gap-6 items-center mt-2">
+            <div>
+              <p class="text-white/60 text-xs font-mono tracking-wider mb-2">BUILD STANDARD</p>
+              <h3 class="font-heading font-bold text-2xl sm:text-3xl mb-1">¥300,000 〜 ¥600,000</h3>
+              <p class="text-white/60 text-xs mb-1">期間 1〜2ヶ月</p>
+              <p class="text-white/80 text-xs font-mono">LAYER 1 + 2</p>
             </div>
             <div>
-              <div class="inline-flex items-center gap-1 text-accent text-xs font-semibold mb-2">
-                <span class="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                無料プレゼント
-              </div>
-              <h3 class="font-bold text-xl text-primary mb-3">業務改善レポート</h3>
-              <p class="text-text-secondary text-sm leading-relaxed mb-5">ヒアリング内容をもとに、御社専用のレポートを無料でお渡しします。</p>
-              <ul class="space-y-2.5">
-                <li class="flex items-start gap-2">
-                  <svg class="w-5 h-5 text-cta-green flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
-                  <span class="text-sm text-text-secondary"><strong class="text-primary">業務フローと課題の整理</strong> — 全業務を可視化し、ボトルネックを特定</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-5 h-5 text-cta-green flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
-                  <span class="text-sm text-text-secondary"><strong class="text-primary">Notionでの改善提案</strong> — 各課題に対する具体的な解決策を提示</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-5 h-5 text-cta-green flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
-                  <span class="text-sm text-text-secondary"><strong class="text-primary">削減時間の見込み</strong> — 改善後にどれだけ業務時間を短縮できるか試算</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg class="w-5 h-5 text-cta-green flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg>
-                  <span class="text-sm text-text-secondary"><strong class="text-primary">優先度ランキング</strong> — 効果が大きい施策から順に「まずここから」を明示</span>
-                </li>
+              <p class="text-white/85 text-sm leading-relaxed mb-3">Notion + AI 自動化。<strong class="text-white">雑務の自動化までを一括構築</strong>。迷ったらこちら。</p>
+              <ul class="grid sm:grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-white/80">
+                <li class="flex items-start gap-2"><span class="text-white">›</span><span>Notion 設計 + 自動化フロー</span></li>
+                <li class="flex items-start gap-2"><span class="text-white">›</span><span>AI 要約・分類・転記の実装</span></li>
+                <li class="flex items-start gap-2"><span class="text-white">›</span><span>外部ツール連携（Slack / GAS / LINE）</span></li>
+                <li class="flex items-start gap-2"><span class="text-white">›</span><span>運用マニュアル + 移行支援</span></li>
               </ul>
             </div>
           </div>
         </div>
+
+        <!-- Light + Premium: compact 2-col -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-paper rounded-xl p-5 border border-line card-hover">
+            <div class="flex items-baseline gap-3 mb-1.5">
+              <p class="text-ink-mute text-[11px] font-mono tracking-wider">BUILD LIGHT</p>
+              <span class="text-ink-mute text-[10px] font-mono">LAYER 1</span>
+            </div>
+            <p class="font-heading font-bold text-base text-ink mb-1">¥150,000 〜 ¥300,000<span class="text-ink-mute text-xs font-normal ml-2">2〜4週間</span></p>
+            <p class="text-ink-mid text-xs leading-relaxed">Notion 設計のみ。まず基盤を整えたい方向け。</p>
+          </div>
+          <div class="bg-paper rounded-xl p-5 border border-line card-hover">
+            <div class="flex items-baseline gap-3 mb-1.5">
+              <p class="text-ink-mute text-[11px] font-mono tracking-wider">BUILD PREMIUM</p>
+              <span class="text-ink-mute text-[10px] font-mono">LAYER 1〜3（4可）</span>
+            </div>
+            <p class="font-heading font-bold text-base text-ink mb-1">¥600,000 〜 ¥1,500,000<span class="text-ink-mute text-xs font-normal ml-2">2〜3ヶ月</span></p>
+            <p class="text-ink-mid text-xs leading-relaxed">エージェントの自律実行までを一気通貫で。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARE: Standard prominent + Light/Premium compact -->
+      <div class="mb-10 fade-in">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="font-mono text-xs tracking-widest text-ink">② CARE</span>
+          <span class="h-px flex-1 bg-line"></span>
+          <span class="text-ink-mute text-xs">月額・保守サブスクリプション</span>
+        </div>
+
+        <!-- Featured: Care Standard (full width hero card) -->
+        <div class="bg-paper rounded-2xl p-6 sm:p-8 border-2 border-ink card-hover relative mb-4">
+          <div class="absolute -top-3 left-6 inline-flex items-center gap-1.5 bg-ink text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+            ★ 一番選ばれているプラン
+          </div>
+          <div class="grid md:grid-cols-[1fr_2fr] gap-6 items-center mt-2">
+            <div>
+              <p class="text-ink-mute text-xs font-mono tracking-wider mb-2">CARE STANDARD</p>
+              <h3 class="font-heading font-bold text-2xl sm:text-3xl text-ink mb-1">¥80,000<span class="text-base text-ink-mute font-normal">/月</span></h3>
+              <p class="text-ink-mute text-xs">月8時間目安 / 5〜15人規模</p>
+            </div>
+            <div>
+              <p class="text-ink-mid text-sm leading-relaxed mb-3">納品後の<strong class="text-ink">継続改善・追加実装まで含む</strong>。AIが賢くなるまで伴走します。</p>
+              <ul class="grid sm:grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-ink-mid">
+                <li class="flex items-start gap-2"><span class="text-ink">✓</span><span>軽微改修＋AI 自動化追加実装</span></li>
+                <li class="flex items-start gap-2"><span class="text-ink">✓</span><span>エージェント プロンプト改善</span></li>
+                <li class="flex items-start gap-2"><span class="text-ink">✓</span><span>新規業務の Notion 化</span></li>
+                <li class="flex items-start gap-2"><span class="text-ink">✓</span><span>マニュアル動画の追加更新</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Light + Premium: compact 2-col -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-paper rounded-xl p-5 border border-line card-hover">
+            <div class="flex items-baseline gap-3 mb-1.5">
+              <p class="text-ink-mute text-[11px] font-mono tracking-wider">CARE LIGHT</p>
+              <span class="text-ink-mute text-[10px]">月3h目安</span>
+            </div>
+            <p class="font-heading font-bold text-base text-ink mb-1">¥30,000<span class="text-ink-mute text-xs font-normal">/月</span><span class="text-ink-mute text-xs font-normal ml-2">〜5人規模</span></p>
+            <p class="text-ink-mid text-xs leading-relaxed">軽微な改修・運用QA・月次レビュー</p>
+          </div>
+          <div class="bg-paper rounded-xl p-5 border border-line card-hover">
+            <div class="flex items-baseline gap-3 mb-1.5">
+              <p class="text-ink-mute text-[11px] font-mono tracking-wider">CARE PREMIUM</p>
+              <span class="text-ink-mute text-[10px]">月15h目安</span>
+            </div>
+            <p class="font-heading font-bold text-base text-ink mb-1">¥150,000<span class="text-ink-mute text-xs font-normal">/月</span><span class="text-ink-mute text-xs font-normal ml-2">15〜30人規模</span></p>
+            <p class="text-ink-mid text-xs leading-relaxed">複数エージェント運用 + 隔週MTG</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes: inline single line instead of card -->
+      <p class="text-center text-ink-mute text-xs mb-6 fade-in">※ 超過時間は ¥15,000/h で別途請求 / Care は半年継続で 5% 割引</p>
+
+      <div class="text-center mt-12 fade-in">
+        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-ink hover:bg-ink-soft text-white font-bold text-base px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl cta-pulse">
+          自社に合うプランを相談する
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <p class="text-ink-mute text-xs mt-3">無理な営業は一切しません</p>
       </div>
     </div>
   </section>
 
-  <!-- ========== PRICING SECTION ========== -->
-  <section id="pricing" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-5xl mx-auto">
+  <!-- ========== ROI: Don't Hire. Automate. ========== -->
+  <section id="roi" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-paper-alt relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-30" aria-hidden="true"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center mb-12 fade-in">
+        <p class="font-mono font-semibold text-xs tracking-[0.3em] uppercase text-ink-mute mb-3">Don't Hire. Automate.</p>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-4 tracking-tight leading-tight">
+          採用するより、<br class="sm:hidden"><span class="ink-underline">AI を入れる。</span>
+        </h2>
+        <p class="text-ink-mid text-base max-w-2xl mx-auto leading-relaxed">
+          新たに人を雇うのではなく、AI による自動化を導入する。<br class="hidden sm:block">
+          <strong class="text-ink">正社員パート1人を雇うコスト</strong>で、AI は24時間動き、使うほど賢くなります。
+        </p>
+      </div>
+
+      <!-- 2 ROI number cards (horizontal) -->
+      <div class="grid grid-cols-2 gap-4 sm:gap-5 fade-in mb-10 max-w-3xl mx-auto">
+        <div class="bg-paper rounded-2xl p-6 sm:p-7 border border-line card-hover text-center">
+          <p class="font-mono text-[10px] tracking-widest text-ink-mute mb-2">SAVED / MONTH</p>
+          <p class="font-heading font-black text-3xl sm:text-5xl text-ink mb-2 tracking-tight">¥84,000</p>
+          <p class="font-heading font-bold text-ink text-sm mb-2">削減できる月の人件費</p>
+          <p class="text-ink-mute text-xs leading-relaxed">月30時間削減 × 時給¥2,800換算（社保込み正社員平均）</p>
+        </div>
+        <div class="bg-ink rounded-2xl p-6 sm:p-7 border-2 border-ink card-hover text-center text-white shadow-2xl">
+          <p class="font-mono text-[10px] tracking-widest text-white/50 mb-2">PAYBACK</p>
+          <p class="font-heading font-black text-3xl sm:text-5xl text-white mb-2 tracking-tight">約5ヶ月</p>
+          <p class="font-heading font-bold text-white text-sm mb-2">で初期投資を回収</p>
+          <p class="text-white/60 text-xs leading-relaxed">Build Standard ¥450,000（中央値）÷ 月¥84,000 ≒ 5.4ヶ月</p>
+        </div>
+      </div>
+
+      <!-- Comparison table: Hire (パート社員) vs Build Standard -->
+      <div class="bg-paper rounded-2xl border border-line overflow-hidden fade-in mb-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-3 border-b border-line">
+          <div class="p-4 sm:p-5 bg-paper-alt">
+            <p class="font-mono text-[10px] tracking-widest text-ink-mute">COMPARE</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center">
+            <p class="font-heading font-bold text-ink text-sm sm:text-base">パート社員1人を雇う</p>
+            <p class="text-ink-mute text-[10px] mt-0.5">継続的な人件費</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center bg-ink">
+            <p class="font-heading font-bold text-white text-sm sm:text-base">Build Standard</p>
+            <p class="text-white/60 text-[10px] mt-0.5">AI 自動化を構築</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 border-b border-line">
+          <div class="p-4 sm:p-5 bg-paper-alt">
+            <p class="font-heading font-semibold text-ink text-xs sm:text-sm">発生形態</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center">
+            <p class="font-heading font-bold text-ink-mid text-base sm:text-lg">月¥220,000</p>
+            <p class="text-ink-mute text-[10px] mt-0.5">継続発生（×12 = 年¥2,640,000）</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center bg-ink/[0.03]">
+            <p class="font-heading font-bold text-ink text-base sm:text-lg">¥450,000</p>
+            <p class="text-cta-green text-[10px] font-mono font-bold mt-0.5">一括・恒久</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 border-b border-line">
+          <div class="p-4 sm:p-5 bg-paper-alt">
+            <p class="font-heading font-semibold text-ink text-xs sm:text-sm">稼働時間</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center">
+            <p class="text-ink-mid text-xs sm:text-sm">月160h</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center bg-ink/[0.03]">
+            <p class="font-heading font-bold text-ink text-xs sm:text-sm">24h × 365日</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 border-b border-line">
+          <div class="p-4 sm:p-5 bg-paper-alt">
+            <p class="font-heading font-semibold text-ink text-xs sm:text-sm">立ち上がり</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center">
+            <p class="text-ink-mid text-xs sm:text-sm">教育に1〜3ヶ月</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center bg-ink/[0.03]">
+            <p class="font-heading font-bold text-ink text-xs sm:text-sm">即日稼働</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3">
+          <div class="p-4 sm:p-5 bg-paper-alt">
+            <p class="font-heading font-semibold text-ink text-xs sm:text-sm">蓄積効果</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center">
+            <p class="text-ink-mid text-xs sm:text-sm">退職時に消失</p>
+          </div>
+          <div class="p-4 sm:p-5 border-l border-line text-center bg-ink/[0.03]">
+            <p class="font-heading font-bold text-ink text-xs sm:text-sm">使うほど賢くなる</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Powerful framing line -->
+      <p class="text-center text-ink text-sm sm:text-base font-heading font-bold mb-8 fade-in">
+        パート社員1人を <span class="bg-ink text-white px-2 py-0.5 rounded">約2ヶ月</span> 雇うコストで、Build Standard が完成します
+      </p>
+
+      <!-- Mini CTA -->
+      <div class="text-center fade-in">
+        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-ink hover:bg-ink-soft text-white font-bold text-base px-7 py-3.5 rounded-full transition-colors cursor-pointer shadow-xl cta-pulse">
+          自社のROIを試算してもらう
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+        <p class="text-ink-mute text-[11px] mt-3">※ 数字は中小企業の平均的な業務量・人件費を基にした試算です。実際の効果は業務内容により変動します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FLOW ========== -->
+  <section id="flow" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-ink relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg-dark" aria-hidden="true"></div>
+    <div class="max-w-5xl mx-auto relative z-10">
       <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Pricing</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">料金プラン</h2>
-        <p class="text-text-secondary text-base max-w-2xl mx-auto">構築して終わりにしません。すべてのお客様に納品後の伴走サポートが付きます。</p>
+        <p class="text-ink-faint font-mono font-semibold text-xs tracking-widest uppercase mb-3">Flow</p>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-white mb-4 tracking-tight">支援の流れ</h2>
+        <p class="text-white/60 text-base max-w-2xl mx-auto">無料相談から納品・継続改善まで、プロセスはシンプルに。</p>
       </div>
 
-      <!-- DX構築 -->
-      <div class="bg-surface rounded-2xl border border-border-light p-8 sm:p-10 mb-10 fade-in">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div>
-            <h3 class="font-heading font-bold text-xl text-primary mb-1">DX構築（Notion構築）</h3>
-            <p class="text-text-secondary text-sm">業務規模・複雑さに応じた個別見積もり</p>
-          </div>
-          <div class="flex items-baseline gap-1">
-            <span class="font-heading font-bold text-3xl sm:text-4xl text-primary">3</span>
-            <span class="text-primary font-semibold text-lg">万円 〜</span>
-            <span class="font-heading font-bold text-3xl sm:text-4xl text-primary ml-1">30</span>
-            <span class="text-primary font-semibold text-lg">万円</span>
-            <span class="text-text-muted text-xs ml-2">（税別・目安）</span>
-          </div>
-        </div>
-        <p class="text-text-muted text-xs mb-6">※ あくまで目安です。ご依頼の内容により変動します。</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="inline-flex items-center gap-1.5 bg-white text-text-secondary text-xs font-medium px-3 py-1.5 rounded-full border border-border-light">
-            <svg class="w-3.5 h-3.5 text-cta-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-            徹底ヒアリング
-          </span>
-          <span class="inline-flex items-center gap-1.5 bg-white text-text-secondary text-xs font-medium px-3 py-1.5 rounded-full border border-border-light">
-            <svg class="w-3.5 h-3.5 text-cta-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-            Notion構築
-          </span>
-          <span class="inline-flex items-center gap-1.5 bg-white text-text-secondary text-xs font-medium px-3 py-1.5 rounded-full border border-border-light">
-            <svg class="w-3.5 h-3.5 text-cta-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-            外部ツール連携
-          </span>
-          <span class="inline-flex items-center gap-1.5 bg-white text-text-secondary text-xs font-medium px-3 py-1.5 rounded-full border border-border-light">
-            <svg class="w-3.5 h-3.5 text-cta-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-            映像マニュアル
-          </span>
-          <span class="inline-flex items-center gap-1.5 bg-white text-text-secondary text-xs font-medium px-3 py-1.5 rounded-full border border-border-light">
-            <svg class="w-3.5 h-3.5 text-cta-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-            納品後1ヶ月サポート付き
-          </span>
-        </div>
-      </div>
+      <!-- Vertical timeline flow -->
+      <div class="flow-timeline relative max-w-3xl mx-auto fade-in">
+        <!-- vertical connector line -->
+        <div class="absolute left-6 sm:left-8 top-2 bottom-2 w-px bg-white/15" aria-hidden="true"></div>
 
-      <!-- サポートプラン比較テーブル -->
-      <div class="fade-in">
-        <h3 class="font-heading font-bold text-lg text-primary mb-6 text-center">伴走サポートプラン比較</h3>
-        <div class="bg-surface rounded-2xl border border-border-light overflow-hidden">
-          <div class="overflow-x-auto">
-            <table class="w-full text-sm">
-              <thead>
-                <tr class="border-b border-border-light">
-                  <th class="text-left py-4 px-4 sm:px-6 text-text-secondary font-medium w-2/5"></th>
-                  <th class="text-center py-4 px-3 sm:px-6 font-heading font-bold text-primary w-[30%]">
-                    <div class="text-xs text-text-muted font-semibold tracking-widest uppercase mb-1">Free</div>
-                    <div class="text-xl">¥0</div>
-                    <div class="text-xs text-text-muted font-normal">納品後1ヶ月</div>
-                  </th>
-                  <th class="text-center py-4 px-3 sm:px-6 w-[30%] bg-primary/5 rounded-t-xl">
-                    <div class="inline-flex items-center gap-1 bg-accent text-white text-[10px] font-bold px-2.5 py-1 rounded-full mb-1">おすすめ</div>
-                    <div class="font-heading font-bold text-xl text-primary">¥15,000</div>
-                    <div class="text-xs text-text-muted font-normal">/ 月額</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">構成の修正・変更</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-cta-green">無制限</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-cta-green bg-primary/5">無制限</td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">バグ・不具合修正</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-cta-green">無制限</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-cta-green bg-primary/5">無制限</td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">操作の質問対応</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-secondary">チャット</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-primary bg-primary/5">チャット+通話</td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">映像マニュアル</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-secondary">納品時のまま</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-primary bg-primary/5">変更時に更新</td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">対応スピード</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-secondary">24h以内</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-secondary bg-primary/5">24h以内</td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">定期ミーティング</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-muted">—</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center font-semibold text-primary bg-primary/5">月1回</td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">業務フローの定期見直し</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-muted">—</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center">
-                    <svg class="w-5 h-5 text-cta-green mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  </td>
-                </tr>
-                <tr class="border-b border-border-light">
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">社内レクチャー</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-muted">—</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center bg-primary/5">
-                    <svg class="w-5 h-5 text-cta-green mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="py-3.5 px-4 sm:px-6 font-medium text-primary">Notion新機能の提案</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center text-text-muted">—</td>
-                  <td class="py-3.5 px-3 sm:px-6 text-center bg-primary/5">
-                    <svg class="w-5 h-5 text-cta-green mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div class="relative pl-16 sm:pl-20 pb-10">
+          <div class="absolute left-0 top-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white text-ink flex items-center justify-center font-mono font-bold text-sm sm:text-base shadow-xl ring-4 ring-ink">01</div>
+          <div class="bg-white/[0.06] border border-white/10 rounded-2xl p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-4 mb-2 flex-wrap">
+              <h3 class="font-heading font-bold text-white text-base sm:text-lg">無料相談（30分）</h3>
+              <span class="text-white/50 text-xs font-mono whitespace-nowrap bg-white/5 px-3 py-1 rounded-full">即日〜1週間</span>
+            </div>
+            <p class="text-white/65 text-sm leading-relaxed">業務の概要をヒアリング。Notion + AI の活用余地と、おおよその削減見込みをお伝えします。</p>
+          </div>
+        </div>
+
+        <div class="relative pl-16 sm:pl-20 pb-10">
+          <div class="absolute left-0 top-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-cta-green text-white flex items-center justify-center font-mono font-bold text-sm sm:text-base shadow-xl ring-4 ring-ink z-10">02</div>
+          <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-2xl relative">
+            <div class="absolute -top-3 left-6 inline-flex items-center gap-1.5 bg-cta-green text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+              ★ ここが一番大事
+            </div>
+            <div class="flex items-center justify-between gap-4 mb-3 mt-2 flex-wrap">
+              <h3 class="font-heading font-bold text-ink text-lg sm:text-xl">徹底ヒアリング + 設計提案</h3>
+              <span class="text-ink-mute text-xs font-mono whitespace-nowrap bg-paper-alt px-3 py-1 rounded-full">1〜2週間</span>
+            </div>
+            <p class="text-ink-mid text-sm leading-relaxed mb-4">
+              業務フローを棚卸しし、<strong class="text-ink">どの雑務をどの層（Notion / 自動化 / エージェント）で削るか</strong>を具体提案。実装前に削減見込み時間を試算し、費用と期間を確定します。
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-paper-alt text-ink-mid text-xs font-medium px-3 py-1.5 rounded-full border border-line">業務フロー棚卸し</span>
+              <span class="bg-paper-alt text-ink-mid text-xs font-medium px-3 py-1.5 rounded-full border border-line">AI削減ポイント特定</span>
+              <span class="bg-paper-alt text-ink-mid text-xs font-medium px-3 py-1.5 rounded-full border border-line">削減時間の事前試算</span>
+              <span class="bg-paper-alt text-ink-mid text-xs font-medium px-3 py-1.5 rounded-full border border-line">4層マッピング</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative pl-16 sm:pl-20 pb-10">
+          <div class="absolute left-0 top-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white text-ink flex items-center justify-center font-mono font-bold text-sm sm:text-base shadow-xl ring-4 ring-ink">03</div>
+          <div class="bg-white/[0.06] border border-white/10 rounded-2xl p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-4 mb-2 flex-wrap">
+              <h3 class="font-heading font-bold text-white text-base sm:text-lg">構築・実装</h3>
+              <span class="text-white/50 text-xs font-mono whitespace-nowrap bg-white/5 px-3 py-1 rounded-full">2週間〜3ヶ月</span>
+            </div>
+            <p class="text-white/65 text-sm leading-relaxed">Layer 1 から順に構築。途中段階でも触れる状態で共有し、フィードバックを反映します。</p>
+          </div>
+        </div>
+
+        <div class="relative pl-16 sm:pl-20">
+          <div class="absolute left-0 top-0 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-cta-green text-white flex items-center justify-center font-mono font-bold text-sm sm:text-base shadow-xl ring-4 ring-ink">04</div>
+          <div class="bg-white/[0.08] border-2 border-cta-green rounded-2xl p-5 sm:p-6">
+            <div class="flex items-center justify-between gap-4 mb-2 flex-wrap">
+              <h3 class="font-heading font-bold text-white text-base sm:text-lg">納品 + Care 移行（任意）</h3>
+              <span class="text-white text-xs font-mono whitespace-nowrap bg-cta-green/30 px-3 py-1 rounded-full">継続</span>
+            </div>
+            <p class="text-white/70 text-sm leading-relaxed">マニュアル動画と運用ガイドを納品。希望者は Care プランに移行し、継続改善で AI を賢くしていきます。</p>
           </div>
         </div>
       </div>
-
-      <p class="text-text-muted text-xs text-center mt-6 fade-in">※ 構築費用はご依頼内容に応じた個別見積もりとなります。まずは無料ヒアリングでお気軽にご相談ください。</p>
     </div>
   </section>
 
-  <!-- ========== ⑧ FAQ SECTION ========== -->
-  <section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-white">
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-paper">
     <div class="max-w-3xl mx-auto">
-      <div class="text-center mb-14 fade-in">
-        <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">FAQ</p>
-        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">よくあるご質問</h2>
+      <div class="text-center mb-12 fade-in">
+        <p class="text-ink-mute font-mono font-semibold text-xs tracking-widest uppercase mb-3">FAQ</p>
+        <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-ink mb-4 tracking-tight">よくあるご質問</h2>
       </div>
 
       <div class="space-y-3 fade-in">
-        <!-- FAQ 1 -->
-        <div class="faq-item bg-surface rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-bold text-base text-primary pr-4">Notionを触ったことがなくても大丈夫ですか？</h3>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
+        <div class="faq-item bg-paper-soft rounded-2xl border border-line overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
+          <div class="flex items-center justify-between px-6 py-5">
+            <h3 class="font-heading font-bold text-base text-ink pr-4">Notion をまだ導入していなくても相談できますか？</h3>
+            <span class="faq-icon text-ink text-2xl font-light flex-shrink-0">+</span>
           </div>
           <div class="faq-answer px-6">
-            <p class="text-text-secondary text-sm leading-relaxed pb-6">はい、まったく問題ありません。Notion未経験の企業様にも多数ご導入いただいています。「こんなことできる？」というレベルのご質問から丁寧にお答えしますし、オーダーメイドの映像マニュアルもご用意しますので、安心してお任せください。</p>
+            <p class="text-ink-mid text-sm leading-relaxed pb-5">問題ありません。プラン契約から立ち上げまでお手伝いします。むしろ、最初から AI 連携を見据えた構造で組めるので有利です。</p>
           </div>
         </div>
-        <!-- FAQ 2 -->
-        <div class="faq-item bg-surface rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-bold text-base text-primary pr-4">社員全員が使えるようになりますか？</h3>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
+        <div class="faq-item bg-paper-soft rounded-2xl border border-line overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
+          <div class="flex items-center justify-between px-6 py-5">
+            <h3 class="font-heading font-bold text-base text-ink pr-4">AI 自動化やエージェントは別会社に頼むべきですか？</h3>
+            <span class="faq-icon text-ink text-2xl font-light flex-shrink-0">+</span>
           </div>
           <div class="faq-answer px-6">
-            <p class="text-text-secondary text-sm leading-relaxed pb-6">「誰でも使える」を前提にUIを設計します。さらに御社専用の映像マニュアルで操作を学べるため、ITリテラシーに関わらず定着を実現します。「誰がどう使うか」まで設計し、担当者が変わっても回る仕組みを構築します。</p>
+            <p class="text-ink-mid text-sm leading-relaxed pb-5">分業すると Notion 側の構造と AI 側の前提がズレ、運用で破綻するケースが多いです。<strong class="text-ink">4層を一気通貫で設計できる</strong>のが弊社の強みです。</p>
           </div>
         </div>
-        <!-- FAQ 3 -->
-        <div class="faq-item bg-surface rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-bold text-base text-primary pr-4">構築にはどのくらいの期間がかかりますか？</h3>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
+        <div class="faq-item bg-paper-soft rounded-2xl border border-line overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
+          <div class="flex items-center justify-between px-6 py-5">
+            <h3 class="font-heading font-bold text-base text-ink pr-4">どのプランから始めるのが良いですか？</h3>
+            <span class="faq-icon text-ink text-2xl font-light flex-shrink-0">+</span>
           </div>
           <div class="faq-answer px-6">
-            <p class="text-text-secondary text-sm leading-relaxed pb-6">業務の規模や複雑さによりますが、一般的にはヒアリングから初回納品まで2〜4週間程度です。その後もフィードバック・修正のサイクルを通じて、業務に完全にフィットするまで継続サポートいたします。</p>
+            <p class="text-ink-mid text-sm leading-relaxed pb-5">構築が必要なら <strong class="text-ink">Build Standard（Notion + AI 自動化）</strong>、すでに Notion がある場合は <strong class="text-ink">Care Standard</strong> から始めるケースが多いです。無料相談で適切なプランをお伝えします。</p>
           </div>
         </div>
-        <!-- FAQ 4 -->
-        <div class="faq-item bg-surface rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-bold text-base text-primary pr-4">料金はどのくらいですか？</h3>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
+        <div class="faq-item bg-paper-soft rounded-2xl border border-line overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
+          <div class="flex items-center justify-between px-6 py-5">
+            <h3 class="font-heading font-bold text-base text-ink pr-4">納品後、自社で改修できますか？</h3>
+            <span class="faq-icon text-ink text-2xl font-light flex-shrink-0">+</span>
           </div>
           <div class="faq-answer px-6">
-            <p class="text-text-secondary text-sm leading-relaxed pb-6">業務内容・規模に応じてお見積りをお出しします。まずは無料ヒアリングで御社の状況をお聞かせください。ヒアリング後に最適なプランをご提案いたします。</p>
+            <p class="text-ink-mid text-sm leading-relaxed pb-5">Notion / 自動化レイヤーは現場の方が改修できる構造で納品します。エージェント / メタ層の改修は Care プランでの伴走を推奨します。</p>
           </div>
         </div>
-        <!-- FAQ 5 -->
-        <div class="faq-item bg-surface rounded-2xl border border-border-light overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
-          <div class="flex items-center justify-between p-6">
-            <h3 class="font-bold text-base text-primary pr-4">既存のExcel・他ツールからの移行はできますか？</h3>
-            <span class="faq-icon text-accent text-2xl font-light flex-shrink-0">+</span>
+        <div class="faq-item bg-paper-soft rounded-2xl border border-line overflow-hidden cursor-pointer" onclick="this.classList.toggle('open')">
+          <div class="flex items-center justify-between px-6 py-5">
+            <h3 class="font-heading font-bold text-base text-ink pr-4">対応業種に制限はありますか？</h3>
+            <span class="faq-icon text-ink text-2xl font-light flex-shrink-0">+</span>
           </div>
           <div class="faq-answer px-6">
-            <p class="text-text-secondary text-sm leading-relaxed pb-6">はい、対応可能です。Excelや他ツールからNotionへのデータ移行もサポートします。数字管理などExcelが適するケースもありますので、最適な使い分けをご提案します。</p>
+            <p class="text-ink-mid text-sm leading-relaxed pb-5">1〜30人規模で、雑務をデータと AI で削れる業務であれば業種は問いません。実績は税理士・人材・クリエイター・コンサル・整体院・EC・コーチ・不動産など多岐にわたります。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ========== FINAL CTA ========== -->
+  <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-ink relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg-dark" aria-hidden="true"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <p class="text-ink-faint font-mono font-semibold text-xs tracking-widest uppercase mb-4 fade-in">Get Started</p>
+      <h2 class="font-heading font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight mb-6 fade-in text-balance tracking-tight">
+        雑務に奪われた時間を、<br>
+        本業の時間に戻す。
+      </h2>
+      <p class="text-white/70 text-base sm:text-lg leading-relaxed mb-8 max-w-2xl mx-auto fade-in">
+        まずは30分の無料相談から。お話を伺った上で、Notion × AI で削れる雑務とおおよその削減見込みをお伝えします。
+      </p>
 
-  <!-- ========== ⑨ URGENCY SECTION ========== -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-primary">
-    <div class="max-w-4xl mx-auto text-center fade-in">
-      <div class="inline-flex items-center gap-2 bg-accent/20 border border-accent/30 rounded-full px-5 py-2 mb-6">
-        <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <span class="text-accent text-sm font-semibold">月3社限定受付</span>
+      <!-- Mini stats badge (last persuasion before CTA) -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-5 mb-10 fade-in">
+        <div class="flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2">
+          <span class="font-heading font-bold text-white text-base">30社+</span>
+          <span class="text-white/70 text-xs">中小・個人事業主の実績</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2">
+          <span class="font-heading font-bold text-white text-base">月15-30h</span>
+          <span class="text-white/70 text-xs">平均削減時間</span>
+        </div>
+        <div class="flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2">
+          <span class="font-heading font-bold text-white text-base">4層統合</span>
+          <span class="text-white/70 text-xs">分業せず一気通貫で設計</span>
+        </div>
       </div>
-      <h2 class="font-heading font-bold text-2xl sm:text-3xl text-white mb-4">丁寧に伴走するため、<br class="sm:hidden">毎月の受付は<span class="text-accent">3社まで</span>に限定しています。</h2>
-      <p class="text-white/60 text-base mb-8">一社一社に十分な時間をかけて支援するため、対応枠には限りがあります。</p>
-      <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse inline-flex items-center gap-2 bg-cta-green hover:bg-cta-green-hover text-white font-bold text-base px-8 py-4 rounded-full transition-colors cursor-pointer shadow-xl">
-        無料ヒアリングを予約する
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- ========== ⑩ CTA SECTION ========== -->
-  <section id="contact" class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-surface">
-    <div class="max-w-2xl mx-auto text-center fade-in">
-      <p class="text-accent font-heading font-semibold text-sm tracking-widest uppercase mb-3">Contact</p>
-      <h2 class="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl text-primary mb-4">今すぐ無料で<br class="sm:hidden">ヒアリングを申し込む</h2>
-      <p class="text-text-secondary text-base mb-10">無料ヒアリング特典付き / 無理な営業は一切しません</p>
-
-      <div class="flex flex-col items-center gap-4">
-        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-cta-green hover:bg-cta-green-hover text-white font-bold text-lg px-10 py-5 rounded-full transition-colors cursor-pointer shadow-xl inline-flex items-center gap-2">
-          無料ヒアリングを予約する
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
+        <a href="https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-paper hover:bg-paper-soft text-ink font-bold text-lg px-10 py-5 rounded-full transition-colors cursor-pointer shadow-2xl">
+          無料相談を予約
         </a>
-        <p class="text-text-muted text-xs mb-4">たった3分で予約完了 / 無理な営業は一切しません</p>
-
-        <p class="text-text-muted text-xs">LINEでDX化のヒントや最新事例をお届けします</p>
-        <a href="https://lin.ee/rMwOfnn" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#06C755] hover:bg-[#05b04c] text-white font-bold text-sm px-6 py-3 rounded-full transition-colors cursor-pointer shadow-md">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-          LINE で情報を受け取る
-        </a>
+        <div class="flex flex-col items-center gap-1.5">
+          <a href="https://lin.ee/rMwOfnn" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-cta-green hover:bg-cta-green-hover text-white font-bold text-sm px-5 py-2.5 rounded-full transition-colors cursor-pointer shadow-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.508.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            AI 自動化診断をする
+          </a>
+          <p class="text-white/40 text-[11px] leading-tight whitespace-nowrap">LINEで診断シートをお届け（無料・30秒で受取）</p>
+        </div>
       </div>
+      <p class="text-white/40 text-xs mt-6 fade-in">無理な営業は一切しません</p>
     </div>
   </section>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="bg-primary py-12 px-4 sm:px-6 lg:px-8">
+  <footer class="bg-paper border-t border-line py-10 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-2 font-heading font-bold text-lg text-white">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="28" height="28" rx="6" fill="#1E293B"/>
-            <path d="M7 8h14v2H7V8zm0 5h10v2H7v-2zm0 5h14v2H7v-2z" fill="#CA8A04"/>
-          </svg>
-          DX Partners
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <div class="flex items-center gap-2.5 mb-2">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="28" height="28" rx="6" fill="#0A0A0A"/>
+              <path d="M7 7h3v14H7V7zm4 0h3l4 7V7h3v14h-3l-4-7v7h-3V7z" fill="#FFFFFF"/>
+            </svg>
+            <div class="leading-tight">
+              <p class="text-ink font-heading font-semibold text-sm">Notion × AI 業務改善コンサル</p>
+              <p class="text-ink-mute text-[11px]">屋号 : DX Partners</p>
+            </div>
+          </div>
         </div>
-
-        <!-- SNS Icons -->
-        <div class="flex items-center gap-4">
-          <a href="https://x.com/mzk_notion02?s=21" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer" aria-label="X (Twitter)">
-            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/mzk__210?igsh=MXF4MXk4dnJhbXkxNA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer" aria-label="Instagram">
-            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://www.youtube.com/@mizukitonotion10" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer" aria-label="YouTube">
-            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
+        <div class="text-ink-mute text-xs space-y-1 md:text-right">
+          <p>© 2026 DX Partners. All rights reserved.</p>
+          <p>1〜30人規模 事業者向け Notion + AI 設計サービス</p>
         </div>
-      </div>
-      <div class="border-t border-white/10 mt-8 pt-8 text-center">
-        <p class="text-white/40 text-xs">&copy; 2026 DX Partners. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ========== SCRIPTS ========== -->
   <script>
-    // Intersection Observer for fade-in
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
+    }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          const offset = 80;
-          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
-      });
-    });
   </script>
 </body>
 </html>
