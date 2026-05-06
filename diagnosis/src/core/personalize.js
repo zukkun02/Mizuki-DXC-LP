@@ -31,8 +31,9 @@ export function buildIntro({ industryId, industryFreeText, scaleId }) {
   } else {
     label = industry?.label ?? 'あなたの業種';
   }
-  const scale = SCALE_LABEL[scaleId] ?? '';
-  return `${label}（${scale}）のあなたの業務分析が完了しました。`;
+  const scale = SCALE_LABEL[scaleId];
+  const scalePart = scale ? `（${scale}）` : '';
+  return `${label}${scalePart}のあなたの業務分析が完了しました。`;
 }
 
 const ACTION_TEXT = {

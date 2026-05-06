@@ -28,6 +28,15 @@ describe('buildIntro', () => {
     });
     expect(intro).toContain('あなたの業種');
   });
+
+  it('omits the parenthetical when scaleId is unknown', () => {
+    const intro = buildIntro({
+      industryId: 'tax', industryFreeText: '', scaleId: 'unknown',
+    });
+    expect(intro).not.toContain('（）');
+    expect(intro).toContain('税理士・会計事務所');
+    expect(intro).toContain('のあなたの業務分析が完了しました。');
+  });
 });
 
 describe('buildPriorityActionText', () => {
