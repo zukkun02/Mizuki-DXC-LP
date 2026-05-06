@@ -10,7 +10,6 @@ import { buildIntro, buildPriorityActionText, buildPersonalMessage } from '../..
 import { primaryButton, escapeHtml } from '../components.js';
 
 const JICOO_URL = 'https://www.jicoo.com/t/2F9NLFDIxGrz/e/xOqhR1kD';
-const LINE_URL = 'https://lin.ee/rMwOfnn';
 
 function buildSelectedItems(state) {
   const all = getBusinessesForIndustry(state.industryId);
@@ -118,7 +117,7 @@ export function render({ rootEl, store, nav }) {
 
         <div class="dx-cta-block">
           <h3>御社の数字で、もう少し詳しく。</h3>
-          <p>診断結果を踏まえ、業務自動化の専門家が30分の無料相談で<br/>具体的な進め方をご提案します。</p>
+          <p>この結果をスクショで保存して、<br/>無料相談でそのまま実装プランをご提案します。</p>
           <a href="${JICOO_URL}" target="_blank" rel="noopener" class="dx-cta-primary" data-action="jicoo" style="text-decoration: none;">
             <span>無料相談を予約する</span><span class="arrow">→</span>
           </a>
@@ -127,9 +126,12 @@ export function render({ rootEl, store, nav }) {
           </div>
         </div>
 
-        <div class="dx-liff-status" id="liff-status">
-          LINE で開くとトークに自動送信されます。<br/>
-          <a href="${LINE_URL}" target="_blank" rel="noopener">LINE で友だち追加</a>
+        <div class="dx-screenshot-tip">
+          <span class="icon">📸</span>
+          <div>
+            <b>この画面をスクショで保存</b>しておくと、無料相談で<br/>
+            そのまま実装プランの議論に入れます。
+          </div>
         </div>
 
         <details class="dx-premise">
