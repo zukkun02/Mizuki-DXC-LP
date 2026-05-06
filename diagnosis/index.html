@@ -108,6 +108,64 @@
     .dx-anim { animation: dx-fade-up 360ms cubic-bezier(0.22, 1, 0.36, 1) both; }
 
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+    /* === Result screen === */
+    .dx-result-hero { background: var(--ink); color: var(--cream); padding: 32px 24px 28px; margin: -8px -4px 0; border-radius: 4px 4px 0 0; position: relative; overflow: hidden; }
+    .dx-result-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+    .dx-result-tag { display: inline-block; padding: 4px 10px; background: var(--accent); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; border-radius: 2px; margin-bottom: 20px; font-family: 'JetBrains Mono', monospace; }
+    .dx-result-intro { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 600; line-height: 1.5; margin-bottom: 6px; color: var(--cream); }
+    .dx-result-intro-en { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: rgba(245,240,225,0.5); margin-bottom: 24px; }
+    .dx-result-savings-row { display: flex; align-items: baseline; gap: 12px; padding: 18px 0 6px; border-top: 1px solid rgba(245,240,225,0.12); }
+    .dx-result-savings-label { font-size: 11px; letter-spacing: 0.12em; color: rgba(245,240,225,0.6); font-family: 'JetBrains Mono', monospace; flex: 1; }
+    .dx-result-savings-num { font-family: 'Noto Serif JP', serif; font-size: 48px; font-weight: 700; color: var(--accent); line-height: 1; margin-left: auto; }
+    .dx-result-savings-num small { font-size: 16px; opacity: 0.7; margin-left: 2px; font-weight: 600; }
+
+    .dx-result-body { background: var(--card); margin: 0 -4px; padding: 28px 24px; border-radius: 0 0 4px 4px; border: 1px solid rgba(26,26,26,0.08); border-top: none; }
+
+    .dx-roi-block { background: var(--cream); padding: 24px 20px; border-radius: 3px; margin-bottom: 24px; position: relative; border-left: 3px solid var(--accent); }
+    .dx-roi-eyebrow { font-size: 11px; letter-spacing: 0.18em; color: rgba(26,26,26,0.55); font-weight: 600; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+    .dx-roi-main { font-family: 'Noto Serif JP', serif; font-size: 36px; font-weight: 700; color: var(--ink); line-height: 1.05; letter-spacing: -0.01em; }
+    .dx-roi-main small { font-size: 18px; opacity: 0.7; margin-left: 4px; font-weight: 600; }
+    .dx-roi-sub { font-size: 12px; color: rgba(26,26,26,0.55); margin-top: 8px; font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
+    .dx-roi-stamp { position: absolute; top: 16px; right: 16px; padding: 6px 10px; border: 1.5px solid var(--accent); color: var(--accent); font-family: 'Noto Serif JP', serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; transform: rotate(-4deg); border-radius: 2px; }
+
+    .dx-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(26,26,26,0.08); margin-bottom: 24px; border: 1px solid rgba(26,26,26,0.08); border-radius: 3px; overflow: hidden; }
+    .dx-stat-cell { background: var(--card); padding: 18px 16px; }
+    .dx-stat-cell .lbl { font-size: 11px; color: rgba(26,26,26,0.55); letter-spacing: 0.06em; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+    .dx-stat-cell .val { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; line-height: 1.1; color: var(--ink); }
+    .dx-stat-cell .val small { font-size: 13px; opacity: 0.7; margin-left: 2px; }
+
+    .dx-layer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
+    .dx-layer-cell { background: var(--card); border: 1px solid var(--line); border-radius: 3px; padding: 14px; }
+    .dx-layer-cell .lbl { font-size: 10px; color: rgba(26,26,26,0.55); letter-spacing: 0.06em; line-height: 1.4; margin-bottom: 6px; }
+    .dx-layer-cell .val { font-family: 'Noto Serif JP', serif; font-size: 24px; font-weight: 700; color: var(--ink); }
+    .dx-layer-cell .val small { font-size: 11px; opacity: 0.6; margin-left: 2px; font-weight: 500; }
+
+    .dx-priority-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .dx-priority-item { padding: 14px 16px; background: var(--paper); border-left: 2px solid var(--accent); border-radius: 0 3px 3px 0; }
+    .dx-priority-rank { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--accent); margin-bottom: 4px; letter-spacing: 0.06em; }
+    .dx-priority-label { font-size: 14px; font-weight: 600; line-height: 1.4; margin-bottom: 4px; }
+    .dx-priority-meta { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-bottom: 6px; }
+    .dx-priority-action { font-size: 12px; color: rgba(26,26,26,0.7); line-height: 1.5; }
+
+    .dx-personal-msg { background: var(--paper); border: 1px solid var(--line); padding: 18px 20px; border-radius: 3px; margin-bottom: 28px; }
+    .dx-personal-msg p { white-space: pre-line; font-size: 13px; line-height: 1.7; color: var(--ink); margin: 0; }
+
+    .dx-cta-block { margin-top: 32px; padding: 28px 24px; background: var(--ink); border-radius: 3px; color: var(--cream); text-align: center; }
+    .dx-cta-block::before { content: ''; display: block; width: 24px; height: 2px; background: var(--accent); margin: 0 auto 16px; }
+    .dx-cta-block h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 700; margin: 0 0 10px; color: var(--cream); }
+    .dx-cta-block p { font-size: 13px; line-height: 1.7; color: rgba(245,240,225,0.7); margin: 0 0 20px; }
+
+    .dx-liff-status { font-size: 11px; color: var(--muted); text-align: center; margin-top: 12px; padding: 10px; }
+    .dx-liff-status.is-success { color: var(--accent); }
+    .dx-liff-status a { color: var(--accent); text-decoration: underline; }
+
+    .dx-premise { font-size: 11px; color: var(--muted); margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .dx-premise summary { cursor: pointer; padding: 6px 0; user-select: none; }
+    .dx-premise ul { margin: 8px 0 0; padding-left: 18px; line-height: 1.7; }
+    .dx-premise li { margin-bottom: 4px; }
+
+    .dx-restart { background: none; border: none; margin-top: 16px; font-size: 11px; color: rgba(26,26,26,0.4); text-decoration: underline; cursor: pointer; font-family: inherit; width: 100%; padding: 12px; }
   </style>
 
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
