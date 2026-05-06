@@ -1,4 +1,5 @@
 const SCREEN_LOADERS = {
+  intro: () => import('./screens/intro.js'),
   q1: () => import('./screens/q1-industry.js'),
   q2: () => import('./screens/q2-scale.js'),
   q3: () => import('./screens/q3-business-checklist.js'),
@@ -10,7 +11,8 @@ const SCREEN_LOADERS = {
 };
 
 export async function renderScreen(rootEl, step, store, nav) {
-  const mod = await SCREEN_LOADERS[step]();
+  const loader = SCREEN_LOADERS[step] || SCREEN_LOADERS.intro;
+  const mod = await loader();
   rootEl.innerHTML = '';
   return mod.render({ rootEl, store, nav });
 }

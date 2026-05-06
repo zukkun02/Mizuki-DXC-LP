@@ -1,17 +1,24 @@
-const ORDER = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'result'];
+const ORDER = ['intro', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'result'];
+const QUESTION_COUNT = 7;
 
-export function renderProgress(rootEl, currentStep) {
+export const ORDER_LIST = ORDER;
+
+export function renderProgress(currentStep) {
   const idx = ORDER.indexOf(currentStep);
-  const total = ORDER.length - 1; // result は数えない
-  const pct = Math.min(100, Math.max(0, (idx / total) * 100));
-  rootEl.innerHTML = `
-    <div class="h-1 bg-line rounded-full overflow-hidden">
-      <div class="h-full bg-cta-green transition-all duration-300" style="width:${pct}%"></div>
-    </div>
-  `;
+  const questionIdx = idx; // intro=0, q1=1...q7=7, result=8
+  let pct = 0;
+  if (currentStep === 'intro') pct = 0;
+  else if (currentStep === 'result') pct = 100;
+  else pct = Math.min(100, Math.max(0, (questionIdx / QUESTION_COUNT) * 100));
+
+  const bar = document.getElementById('progress-bar');
+  if (bar) bar.style.width = `${pct}%`;
+
   const indicator = document.getElementById('step-indicator');
   if (indicator) {
-    indicator.textContent = currentStep === 'result' ? '完了' : `STEP ${idx + 1} / ${total}`;
+    if (currentStep === 'intro') indicator.textContent = 'INTRO';
+    else if (currentStep === 'result') indicator.textContent = 'RESULT';
+    else indicator.innerHTML = `<b>${String(questionIdx).padStart(2,'0')}</b> / ${String(QUESTION_COUNT).padStart(2,'0')}`;
   }
 }
 
