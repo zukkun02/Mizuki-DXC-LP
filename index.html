@@ -346,7 +346,7 @@
         <p class="text-ink-mid text-base">どれか1つでも当てはまれば、お役に立てます</p>
       </div>
 
-      <div class="grid sm:grid-cols-3 gap-4 fade-in">
+      <div class="grid sm:grid-cols-3 gap-4 fade-in sm:auto-rows-fr">
         <div class="bg-paper border border-line rounded-2xl p-6 card-hover flex items-start gap-4">
           <img src="img/generated/v2/for_you_scale.png" alt="1〜30人規模を表す抽象ネットワーク図" class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 object-contain" loading="lazy">
           <div class="min-w-0">
@@ -384,11 +384,11 @@
         <p class="text-ink-mid text-base max-w-2xl mx-auto">1〜30人規模の事業者が AI を使いこなせず時間を失う、典型パターンです</p>
       </div>
 
-      <!-- Problem cards: zigzag-style with large mono numbers and prominent left bar -->
-      <div class="grid md:grid-cols-2 gap-5 mb-16 fade-in">
-        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover">
+      <!-- Problem cards: equal-height grid (PC), with large mono numbers and prominent left bar -->
+      <div class="grid md:grid-cols-2 gap-5 mb-16 fade-in md:auto-rows-fr">
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover flex flex-col">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
-          <div class="p-6 sm:p-7 pl-8">
+          <div class="p-6 sm:p-7 pl-8 flex-1 flex flex-col">
             <div class="flex items-start gap-5">
               <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">01</span>
               <div class="flex-1 pt-1">
@@ -397,16 +397,16 @@
                 <p class="text-ink-mid text-sm leading-relaxed">フォーム→スプレッドシート→Notion の転記ループ。AI で自動化できるのに人手で消化している。</p>
               </div>
             </div>
-            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+            <div class="flex items-center gap-2 pt-4 mt-auto border-t border-line-soft">
               <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <span class="text-ink-mute text-xs font-mono">想定ロス: 月10時間+</span>
             </div>
           </div>
         </div>
 
-        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover md:mt-8">
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover flex flex-col">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
-          <div class="p-6 sm:p-7 pl-8">
+          <div class="p-6 sm:p-7 pl-8 flex-1 flex flex-col">
             <div class="flex items-start gap-5">
               <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">02</span>
               <div class="flex-1 pt-1">
@@ -415,16 +415,16 @@
                 <p class="text-ink-mid text-sm leading-relaxed">Slack / スプレッドシート / メモ / LINE。AI に投げたくても、参照すべきデータが点在している。</p>
               </div>
             </div>
-            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+            <div class="flex items-center gap-2 pt-4 mt-auto border-t border-line-soft">
               <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
               <span class="text-ink-mute text-xs font-mono">参照先: 平均5+ツール</span>
             </div>
           </div>
         </div>
 
-        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover">
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover flex flex-col">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
-          <div class="p-6 sm:p-7 pl-8">
+          <div class="p-6 sm:p-7 pl-8 flex-1 flex flex-col">
             <div class="flex items-start gap-5">
               <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">03</span>
               <div class="flex-1 pt-1">
@@ -433,16 +433,16 @@
                 <p class="text-ink-mid text-sm leading-relaxed">毎回プロンプト書き直し&手コピペ。エージェントの自律実行まで自社では設計しきれない。</p>
               </div>
             </div>
-            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+            <div class="flex items-center gap-2 pt-4 mt-auto border-t border-line-soft">
               <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
               <span class="text-ink-mute text-xs font-mono">活用度: 試作レベル止まり</span>
             </div>
           </div>
         </div>
 
-        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover md:mt-8">
+        <div class="group relative bg-paper rounded-2xl border border-line overflow-hidden card-hover flex flex-col">
           <div class="absolute top-0 left-0 w-1.5 h-full bg-ink"></div>
-          <div class="p-6 sm:p-7 pl-8">
+          <div class="p-6 sm:p-7 pl-8 flex-1 flex flex-col">
             <div class="flex items-start gap-5">
               <span class="font-heading font-black text-5xl sm:text-6xl text-line leading-none flex-shrink-0 select-none">04</span>
               <div class="flex-1 pt-1">
@@ -451,7 +451,7 @@
                 <p class="text-ink-mid text-sm leading-relaxed">ベンダーに頼んだ仕組みが現場で回らず、結局元のやり方へ。改修の度に費用が積み上がる。</p>
               </div>
             </div>
-            <div class="flex items-center gap-2 pt-4 mt-4 border-t border-line-soft">
+            <div class="flex items-center gap-2 pt-4 mt-auto border-t border-line-soft">
               <svg class="w-4 h-4 text-ink-mute" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/></svg>
               <span class="text-ink-mute text-xs font-mono">改修費が累積</span>
             </div>
@@ -585,7 +585,7 @@
           このループを自社で組む相談をする
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
-        <p class="text-ink-mute text-xs mt-3">30分・無料 / 無理な営業は一切しません</p>
+        <p class="text-ink-mute text-xs mt-3">30分・無料</p>
       </div>
     </div>
   </section>
@@ -600,7 +600,7 @@
       </div>
 
       <!-- Featured 3 cases (text-only, compact) -->
-      <div class="grid md:grid-cols-3 gap-4 fade-in mb-8">
+      <div class="grid md:grid-cols-3 gap-4 fade-in mb-8 md:auto-rows-fr">
         <div class="bg-paper rounded-xl border border-line card-hover p-5 flex flex-col">
           <div class="flex items-center gap-2 mb-3">
             <span class="font-mono text-[10px] text-ink-mute tracking-widest">CASE 01</span>
@@ -703,7 +703,7 @@
         </div>
 
         <!-- Light + Premium: compact 2-col -->
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="grid md:grid-cols-2 gap-4 md:auto-rows-fr">
           <div class="bg-paper rounded-xl p-5 border border-line card-hover">
             <div class="flex items-baseline gap-3 mb-1.5">
               <p class="text-ink-mute text-[11px] font-mono tracking-wider">BUILD LIGHT</p>
@@ -755,7 +755,7 @@
         </div>
 
         <!-- Light + Premium: compact 2-col -->
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="grid md:grid-cols-2 gap-4 md:auto-rows-fr">
           <div class="bg-paper rounded-xl p-5 border border-line card-hover">
             <div class="flex items-baseline gap-3 mb-1.5">
               <p class="text-ink-mute text-[11px] font-mono tracking-wider">CARE LIGHT</p>
@@ -783,7 +783,6 @@
           自社に合うプランを相談する
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
-        <p class="text-ink-mute text-xs mt-3">無理な営業は一切しません</p>
       </div>
     </div>
   </section>
@@ -799,7 +798,7 @@
         </h2>
         <p class="text-ink-mid text-base max-w-2xl mx-auto leading-relaxed">
           新たに人を雇うのではなく、AI による自動化を導入する。<br class="hidden sm:block">
-          <strong class="text-ink">正社員パート1人を雇うコスト</strong>で、AI は24時間動き、使うほど賢くなります。
+          <strong class="text-ink">正社員1人を雇うコスト</strong>で、AI は24時間動き、使うほど賢くなります。
         </p>
       </div>
 
@@ -807,26 +806,26 @@
       <div class="grid grid-cols-2 gap-4 sm:gap-5 fade-in mb-10 max-w-3xl mx-auto">
         <div class="bg-paper rounded-2xl p-6 sm:p-7 border border-line card-hover text-center">
           <p class="font-mono text-[10px] tracking-widest text-ink-mute mb-2">SAVED / MONTH</p>
-          <p class="font-heading font-black text-3xl sm:text-5xl text-ink mb-2 tracking-tight">¥84,000</p>
-          <p class="font-heading font-bold text-ink text-sm mb-2">削減できる月の人件費</p>
-          <p class="text-ink-mute text-xs leading-relaxed">月30時間削減 × 時給¥2,800換算（社保込み正社員平均）</p>
+          <p class="font-heading font-black text-3xl sm:text-5xl text-ink mb-2 tracking-tight">¥200,000</p>
+          <p class="font-heading font-bold text-ink text-sm mb-2">雇わなくて済む月の人件費</p>
+          <p class="text-ink-mute text-xs leading-relaxed">正社員1人を雇うコスト相当（月給ベース）</p>
         </div>
         <div class="bg-ink rounded-2xl p-6 sm:p-7 border-2 border-ink card-hover text-center text-white shadow-2xl">
           <p class="font-mono text-[10px] tracking-widest text-white/50 mb-2">PAYBACK</p>
-          <p class="font-heading font-black text-3xl sm:text-5xl text-white mb-2 tracking-tight">約5ヶ月</p>
-          <p class="font-heading font-bold text-white text-sm mb-2">で初期投資を回収</p>
-          <p class="text-white/60 text-xs leading-relaxed">Build Standard ¥450,000（中央値）÷ 月¥84,000 ≒ 5.4ヶ月</p>
+          <p class="font-heading font-black text-3xl sm:text-5xl text-white mb-2 tracking-tight">約2.5ヶ月</p>
+          <p class="font-heading font-bold text-white text-sm mb-2">で初期投資を回収<span class="text-white/50 text-xs font-normal ml-1">※構築期間除く</span></p>
+          <p class="text-white/60 text-xs leading-relaxed">Build Standard ¥450,000（中央値）÷ 月¥200,000 ≒ 2.25ヶ月</p>
         </div>
       </div>
 
-      <!-- Comparison table: Hire (パート社員) vs Build Standard -->
+      <!-- Comparison table: Hire (正社員) vs Build Standard -->
       <div class="bg-paper rounded-2xl border border-line overflow-hidden fade-in mb-6 max-w-4xl mx-auto">
         <div class="grid grid-cols-3 border-b border-line">
           <div class="p-4 sm:p-5 bg-paper-alt">
             <p class="font-mono text-[10px] tracking-widest text-ink-mute">COMPARE</p>
           </div>
           <div class="p-4 sm:p-5 border-l border-line text-center">
-            <p class="font-heading font-bold text-ink text-sm sm:text-base">パート社員1人を雇う</p>
+            <p class="font-heading font-bold text-ink text-sm sm:text-base">正社員1人を雇う</p>
             <p class="text-ink-mute text-[10px] mt-0.5">継続的な人件費</p>
           </div>
           <div class="p-4 sm:p-5 border-l border-line text-center bg-ink">
@@ -840,8 +839,8 @@
             <p class="font-heading font-semibold text-ink text-xs sm:text-sm">発生形態</p>
           </div>
           <div class="p-4 sm:p-5 border-l border-line text-center">
-            <p class="font-heading font-bold text-ink-mid text-base sm:text-lg">月¥220,000</p>
-            <p class="text-ink-mute text-[10px] mt-0.5">継続発生（×12 = 年¥2,640,000）</p>
+            <p class="font-heading font-bold text-ink-mid text-base sm:text-lg">月¥200,000</p>
+            <p class="text-ink-mute text-[10px] mt-0.5">継続発生（×12 = 年¥2,400,000）</p>
           </div>
           <div class="p-4 sm:p-5 border-l border-line text-center bg-ink/[0.03]">
             <p class="font-heading font-bold text-ink text-base sm:text-lg">¥450,000</p>
@@ -888,7 +887,7 @@
 
       <!-- Powerful framing line -->
       <p class="text-center text-ink text-sm sm:text-base font-heading font-bold mb-8 fade-in">
-        パート社員1人を <span class="bg-ink text-white px-2 py-0.5 rounded">約2ヶ月</span> 雇うコストで、Build Standard が完成します
+        正社員1人を <span class="bg-ink text-white px-2 py-0.5 rounded">約2.5ヶ月</span> 雇うコストで、Build Standard が完成します
       </p>
 
       <!-- Mini CTA -->
@@ -1033,6 +1032,64 @@
     </div>
   </section>
 
+  <!-- ========== VOICES (testimonials) ========== -->
+  <section id="voices" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-paper-soft">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center gap-3 mb-8 fade-in">
+        <span class="font-mono text-[10px] tracking-widest text-ink-mute">VOICES</span>
+        <span class="h-px flex-1 bg-line"></span>
+        <span class="text-ink-mute text-xs">実際にご利用いただいた方の声</span>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-4 fade-in md:auto-rows-fr">
+        <div class="bg-paper rounded-2xl p-6 border border-line card-hover flex flex-col">
+          <div class="flex items-center gap-1 mb-3 text-ink">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ink text-sm leading-relaxed flex-1 mb-4">「お客様カルテの作成で、繊細な内容にも対応していただき本当にありがとうございました。また是非機会がありましたらお願いします」</p>
+          <div class="flex items-center gap-2 pt-3 border-t border-line-soft">
+            <div class="w-8 h-8 rounded-full bg-paper-alt flex items-center justify-center font-heading font-bold text-ink-mid text-xs">A</div>
+            <p class="text-ink-mid text-xs font-heading font-semibold">A さん（女性）</p>
+          </div>
+        </div>
+
+        <div class="bg-paper rounded-2xl p-6 border border-line card-hover flex flex-col">
+          <div class="flex items-center gap-1 mb-3 text-ink">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ink text-sm leading-relaxed flex-1 mb-4">「ビデオチャットで丁寧に教えていただきとても参考になりました。要望にも応えていただき感謝しています」</p>
+          <div class="flex items-center gap-2 pt-3 border-t border-line-soft">
+            <div class="w-8 h-8 rounded-full bg-paper-alt flex items-center justify-center font-heading font-bold text-ink-mid text-xs">B</div>
+            <p class="text-ink-mid text-xs font-heading font-semibold">B さん（男性）</p>
+          </div>
+        </div>
+
+        <div class="bg-paper rounded-2xl p-6 border border-line card-hover flex flex-col">
+          <div class="flex items-center gap-1 mb-3 text-ink">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-ink text-sm leading-relaxed flex-1 mb-4">「とても分かりやすく最適な提案をしてくださったので、疑問や課題が解決しました。みずきさんにお願いしてよかったです」</p>
+          <div class="flex items-center gap-2 pt-3 border-t border-line-soft">
+            <div class="w-8 h-8 rounded-full bg-paper-alt flex items-center justify-center font-heading font-bold text-ink-mid text-xs">C</div>
+            <p class="text-ink-mid text-xs font-heading font-semibold">C さん（男性）</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== FINAL CTA ========== -->
   <section class="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-ink relative overflow-hidden">
     <div class="absolute inset-0 grid-bg-dark" aria-hidden="true"></div>
@@ -1073,7 +1130,6 @@
           <p class="text-white/40 text-[11px] leading-tight whitespace-nowrap">LINEで診断シートをお届け（無料・30秒で受取）</p>
         </div>
       </div>
-      <p class="text-white/40 text-xs mt-6 fade-in">無理な営業は一切しません</p>
     </div>
   </section>
 
